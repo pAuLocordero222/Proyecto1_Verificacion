@@ -7,18 +7,20 @@ module FIFO #(parameter pckg_sz = 4;)(
 );
 
     q[$] = {};
+    
+    always (*) begin
+        D_out = q[-1];
 
-    D_out = q[-1];
-
-    //Funciones de la FIFO
-    if(push)begin
-        q.push_front(D_in);
-    end
-    else if(pop)begin
-        q.pop_back;
-    end
-    else if(rst)begin
-        q.delete();
+        //Funciones de la FIFO
+        if(push)begin
+            q.push_front(D_in);
+        end
+        else if(pop)begin
+            q.pop_back;
+        end
+        else if(rst)begin
+            q.delete();
+        end
     end
 
 endmodule
