@@ -24,10 +24,15 @@ class agent #(parameter dr = 4, pkg = 16);
                 test_agent_mbx.get(instruccion);
                 case(instruccion)
                     randem_randrec: begin
-                        for(int i = 0; i < num_transacciones; i++) begin
-                            transaccion = new;
-                            transaccion.max_retardo = max_retardo;
-                        end
+                        transaccion = new;
+                        rand transaccion.retardo;
+                        rand transaccion.payload;
+                        rand transaccion.id_dest;
+                        rand transaccion.tiempo;
+                        rand transaccion.id_emisor;
+                        rand transaccion.tipo;
+
+                        constraint  const_retardo {retardo < max_retardo; retardo > 0;}
                     end
                 endcase
             end

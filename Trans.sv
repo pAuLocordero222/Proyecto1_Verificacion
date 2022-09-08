@@ -7,9 +7,7 @@ class trans_bus #(parameter pckg_size = 16 ):
     int tiempo;
     bit [8:0]id_emisor; //direccion del dispositivo del cual se envia el mensaje
     tipo_trans tipo; //tipo de transaccion
-    int max_retardo;
 
-    constraint const_retardo{retardo<max_retardo: retardo>0}
 
     function new(int ret=0, bit[pckg_size-8:0] pyld=0, int tmp = 0; bit [8:0]dest=0, bit [8:0]emi,tipo_trans tpo=lectura, int mx_ret=5 );
         this.retardo=ret;
@@ -18,7 +16,6 @@ class trans_bus #(parameter pckg_size = 16 ):
         this.id_dest=dest;
         this.id_emisor=emi;
         this.tipo=tpo;
-        this.max_retardo=mx_ret;
 
         
     endfunction
