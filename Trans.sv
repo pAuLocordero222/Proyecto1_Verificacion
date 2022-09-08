@@ -36,3 +36,15 @@ class trans_bus #(parameter pckg_size = 16 ):
     endfunction
 
 endclass
+
+//randem = emisor aleatorio
+//randrec = receptor aleatorio
+//specem = emisor especifico
+//specrec = receptor especifico
+typedef enum {randem_randrec, randem_specrec, specem_randrec, specem_specrec, reset} instrucciones_agente;
+
+
+//Definicion de los mailboxes
+typedef mailbox #(trans_bus) trans_bus_mbx;
+
+typedef mailbox #(instrucciones_agente) cmd_test_agente_mbx;
