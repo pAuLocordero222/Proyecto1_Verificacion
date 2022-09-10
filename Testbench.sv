@@ -7,6 +7,8 @@ module testbench;
 
     initial begin
         f1 = new(0, 5 , 0, 0);
+      
+      	f1.fifo();
 
         f1.push = 1;#2;
         f1.push = 0;
@@ -20,3 +22,4 @@ module testbench;
 
     end
 endmodule
+
