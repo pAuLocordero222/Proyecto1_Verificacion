@@ -1,13 +1,14 @@
 //Creacion de la clase para la transaccion entre generador y driver
 typedef enum {lectura, escritura, reset, broadcast } tipo_trans;
 class trans_bus #(parameter pckg_size = 16 ):
-    int retardo; //numero de ciclos de reloj que se deben esperar para ejecutar la instruccion
+    rand int retardo; //numero de ciclos de reloj que se deben esperar para ejecutar la instruccion
     bit [pckg_size-8:0]payload; //dato
-    bit [8:0]id_dest; //direccion del dispositivo destino
+    rand bit [8:0]id_dest; //direccion del dispositivo destino
     int tiempo;
-    bit [8:0]id_emisor; //direccion del dispositivo del cual se envia el mensaje
+    rand bit [8:0]id_emisor; //direccion del dispositivo del cual se envia el mensaje
     tipo_trans tipo; //tipo de transaccion
 
+    constraint  const_retardo {retardo < max_retardo; retardo > 0;}
 
     function new(int ret=0, bit[pckg_size-8:0] pyld=0, int tmp = 0; bit [8:0]dest=0, bit [8:0]emi,tipo_trans tpo=lectura, int mx_ret=5 );
         this.retardo=ret;
