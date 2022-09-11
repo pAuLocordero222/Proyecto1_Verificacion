@@ -1,5 +1,5 @@
 `timescale 1ns/1ps
-`include "Agent_Gen.sv"
+`include "Agent.sv"
 `include "Trans.sv"
 `include "Interface.sv"
 `include "Environment.sv"
