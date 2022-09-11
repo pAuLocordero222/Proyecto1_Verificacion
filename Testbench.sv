@@ -5,6 +5,7 @@
 
 
 module tb;
+  mailbox test_2_gen_mbx;
 
   parameter pckg_size = 8;
   parameter drvrs = 4;
@@ -25,6 +26,11 @@ module tb;
     inst_envi = new();
     inst_envi.bus_interface = bus_interface;
     inst_envi.run();
+
+    //Test1: envio de datos aleatorios desde dispositivos aleatorios hacia destinos aleatorios 
+    test=test1
+    test_2_gen_mbx.put(test)
+
 
   end
 
