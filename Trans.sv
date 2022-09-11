@@ -1,8 +1,8 @@
 //Creacion de la clase para la transaccion entre generador y driver
-typedef enum {test1, test2, test3, test4, test5, test6, test7} tipo_test;
+typedef enum{test1, test2, test3, test4, test5, test6, test7} tipo_test;
 
 
-class trans_bus #(parameter pckg_size, drvrs):
+class trans_bus #(parameter pckg_size, drvrs);
     rand int retardo; //numero de ciclos de reloj que se deben esperar para ejecutar la instruccion
     rand bit [pckg_size-8:0]payload; //dato
     rand bit [8:0]id_dest; //direccion del dispositivo destino
@@ -11,8 +11,8 @@ class trans_bus #(parameter pckg_size, drvrs):
     int max_retardo;
 
     constraint const_retardo {retardo < max_retardo; retardo > 0;}
-    constraint const_emisor {id_emisor < drvrs; id_emisor > 0};
-    constraint const_dest {id_dest < drvrs; id_dest > 0; id_dest != id_emisor};
+    constraint const_emisor {id_emisor < drvrs; id_emisor > 0;}
+    constraint const_dest {id_dest < drvrs; id_dest > 0; id_dest != id_emisor;}
 
 
 /*
@@ -48,8 +48,8 @@ endclass
 
 
 //Definicion de los mailboxes
-typedef mailbox #(test) cmd_test_2_gen_mbx;
-typedef mailbox #(test) cmd_agnt_2_drvr_mbx;
+//typedef mailbox #(test) cmd_test_2_gen_mbx;
+//typedef mailbox #(test) cmd_agnt_2_drvr_mbx;
 
 
 //typedef mailbox #(instrucciones_agente) cmd_test_agente_mbx;

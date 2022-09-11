@@ -5,7 +5,7 @@ class Envi #(parameter pckg_size, num_msg, drvrs, bits);
     virtual bus_if #(.bits(bits), .drvrs(drvrs), .pckg_size(pckg_size)) bus_interface;
 
     //Declaracion de los mailboxes
-    mailbox test_2_gen_mbx;
+    //mailbox test_2_gen_mbx;
     mailbox agnt_2_drvr_mbx; 
 
     function new();
@@ -18,7 +18,7 @@ class Envi #(parameter pckg_size, num_msg, drvrs, bits);
         //Conexion de las interfases y mailboxes en el ambiente
         inst_age_gen.agnt_2_drvr_mbx = agnt_2_drvr_mbx;
     endfunction
-    task run()
+    task run();
         fork
             inst_age_gen.run();
 
