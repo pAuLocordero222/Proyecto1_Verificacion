@@ -1,13 +1,25 @@
-class age_gen #(parameter pckg_size, drvrs, broadcast);
+class age_gen #(parameter pckg_size, num_msg, drvrs);
+
     
-    test tipo_test; //tipos de test para el DUT
+    tipo_test test; //tipos de test para el DUT
+
+    cmd_test_2_gen_mbx test_2_gen_mbx;
+    cmd_agnt_2_drvr_mbx agnt_2_drvr_mbx;  
+    
+
+
 
     task run();
-        tb.test_2_gen_mbx.get(tipo_test);
-        case(tipo_test):
+        tb.test_2_gen_mbx.get(test);
+        case(test):
             test1:
                 begin
-                    
+                    for (int i = 0; i < num_msg; i++) begin
+                        trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) msg_2_drvr;
+                        msg_2_drvr = new;
+                        msg_2_drvr.randomize();
+                        agnt_2_drvr_mbx.put(msg_2_drvr);
+                    end
                 end
 
             test2:

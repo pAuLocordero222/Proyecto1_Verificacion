@@ -1,12 +1,7 @@
 //The interface allows verification components to access DUT signals
 // using a virtual interface handle
 
-interface bus_if 
-    #(
-        parameter bits = 1,
-        parameter drvrs = 4,
-        parameter pckg_sz = 16;
-    )(input bit clk);
+interface bus_if #(parameter bits ,drvrs, pckg_sz;)(input bit clk);
 
     logic clk;
     logic reset;
