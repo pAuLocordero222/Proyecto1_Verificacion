@@ -1,3 +1,54 @@
+class age_gen #(parameter pckg_size, drvrs, broadcast);
+    
+    test tipo_test; //tipos de test para el DUT
+
+    task run();
+        tb.test_2_gen_mbx.get(tipo_test);
+        case(tipo_test):
+            test1:
+                begin
+                    
+                end
+
+            test2:
+                begin
+                    
+                end
+
+            test3:
+                begin
+                    
+                end
+
+            test4:
+                begin
+                    
+                end
+
+            test5:
+                begin
+                    
+                end
+
+            test6:
+                begin
+                    
+                end
+
+            test7:
+                begin
+                    
+                end
+
+        endcase
+
+
+    endtask
+
+endclass
+
+
+/*
 class agent #(parameter dr = 4, pkg = 16);
     //trans_bus_mbx agnt_drvr_mbx; //Mailbox agente driver
     cmd_test_agente_mbx test_agent_mbx; //Mailbox test agente
@@ -39,4 +90,5 @@ class agent #(parameter dr = 4, pkg = 16);
         end
     endtask
 endclass
+*/
 

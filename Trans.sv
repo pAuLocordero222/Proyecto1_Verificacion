@@ -1,5 +1,7 @@
 //Creacion de la clase para la transaccion entre generador y driver
-typedef enum {lectura, escritura, reset, broadcast } tipo_trans;
+typedef enum {test1, test2, test3, test4, test5, test6, test7} test;
+
+
 class trans_bus #(parameter pckg_size = 16 ):
     rand int retardo; //numero de ciclos de reloj que se deben esperar para ejecutar la instruccion
     bit [pckg_size-8:0]payload; //dato
@@ -43,6 +45,6 @@ typedef enum {randem_randrec, randem_specrec, specem_randrec, specem_specrec, re
 
 
 //Definicion de los mailboxes
-typedef mailbox #(trans_bus) trans_bus_mbx;
+typedef mailbox #(test) test_2_gen_mbx;
 
 typedef mailbox #(instrucciones_agente) cmd_test_agente_mbx;
