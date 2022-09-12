@@ -2,6 +2,7 @@
 `include "Agent.sv"
 `include "Interface.sv"
 `include "Driver.sv"
+`include "Monitor.sv"
 `include "Environment.sv"
 
 

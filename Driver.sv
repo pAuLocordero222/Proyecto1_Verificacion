@@ -2,14 +2,15 @@
 class driver #(parameter pckg_size, num_msg, drvrs, bits);
   	
   	bit dato[pckg_size-1:0];
-	mailbox agnt_2_drvr_mbx;
+	  mailbox agnt_2_drvr_mbx;
   
     virtual bus_if #(.bits(bits), .drvrs(drvrs), .pckg_size(pckg_size)) bus_interface; //instancia para la interface
   	trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) msg_2_DUT; //instancia de la clase de transferencia para guardar el mensaje que se va a enciar al DUT
   
     task run();
       //$display("Mensaje en driver:", msg_2_DUT.payload);//se obtiene el mensaje que se envio desde el agente
-      
+      $display("Driver correctamente inicializado");
+
       for ( int i=0; i < drvrs; i++)begin //se resetea el DUT para evitar errores
         bus_interface.pndng[0][i]<=0;
         bus_interface.reset<=1'b1;
@@ -33,7 +34,7 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
                   $display("dispositivo destino: %b",msg_2_DUT.id_dest);
                   $display("payload: %b",msg_2_DUT.payload);
                   $display("Mensaje completo a enviar: %b",msg_2_DUT.D_push);
-                        bus_interface.D_push[0][j]<=msg_2_DUT.D_push;
+                        bus_interface.D_push[0][j]<=msg_2_DUT.message;
               		
                         bus_interface.pndng[0][j]<=1'b1;
                   $display(bus_interface.pndng[0][j]);
