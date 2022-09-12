@@ -1,10 +1,31 @@
+
+
+typedef enum{test1, test2, test3, test4, test5, test6, test7} tipo_test;
+
+class trans_bus #(parameter pckg_size, drvrs);
+    rand int retardo; //numero de ciclos de reloj que se deben esperar para ejecutar la instruccion
+  rand bit [pckg_size-8+1:0]payload; //dato
+  rand bit [7:0]id_dest; //direccion del dispositivo destino
+    int tiempo;
+  rand bit [7:0]id_emisor; //direccion del dispositivo del cual se envia el mensaje
+    int max_retardo=25;
+  
+    constraint const_retardo {retardo < max_retardo; retardo > 0;}
+    constraint const_emisor {id_emisor < drvrs; id_emisor > 0;}
+    constraint const_dest {id_dest < drvrs; id_dest > 0; id_dest != id_emisor;}
+  
+endclass
+  
+
+
 class age_gen #(parameter pckg_size, num_msg, drvrs);
 
-    
+
+
     tipo_test test; //tipos de test para el DUT
 
-    //mailbox test_2_gen_mbx;
-    //mailbox agnt_2_drvr_mbx;  
+    mailbox test_2_gen_mbx;
+    mailbox agnt_2_drvr_mbx;  
     
 
 
@@ -18,14 +39,22 @@ class age_gen #(parameter pckg_size, num_msg, drvrs);
                         trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) msg_2_drvr;
                         msg_2_drvr = new;
                         msg_2_drvr.randomize();
-                        msg_2_drvr.print("aaaaa")
                         agnt_2_drvr_mbx.put(msg_2_drvr);
+                      	
+                      	$display("");
+                      	$display("Agente: Instruccion de Test1 creada");
+                      	$display("payload=%b",msg_2_drvr.payload);
+                      	$display("emisor=%b",msg_2_drvr.id_emisor);
+                        $display("destino=",msg_2_drvr.id_dest);
+                      	$display("");
+                      
+                      
                     end
                 end
 
             test2:
                 begin
-                    
+                  $display("test2");   
                 end
 
             test3:
@@ -105,3 +134,5 @@ class agent #(parameter dr = 4, pkg = 16);
 endclass
 */
 
+
+      
