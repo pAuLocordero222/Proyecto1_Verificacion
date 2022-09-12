@@ -4,10 +4,11 @@ typedef enum{test1, test2, test3, test4, test5, test6, test7} tipo_test;
 
 class trans_bus #(parameter pckg_size, drvrs);
     rand int retardo; //numero de ciclos de reloj que se deben esperar para ejecutar la instruccion
-  rand bit [pckg_size-8+1:0]payload; //dato
+  rand bit [pckg_size-8-1:0]payload; //dato
   rand bit [7:0]id_dest; //direccion del dispositivo destino
     int tiempo;
   rand bit [7:0]id_emisor; //direccion del dispositivo del cual se envia el mensaje
+  bit[pckg_size-1:0]D_push=0;
     int max_retardo=25;
   
     constraint const_retardo {retardo < max_retardo; retardo > 0;}
@@ -39,6 +40,7 @@ class age_gen #(parameter pckg_size, num_msg, drvrs);
                         trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) msg_2_drvr;
                         msg_2_drvr = new;
                         msg_2_drvr.randomize();
+                      	msg_2_drvr.D_push={msg_2_drvr.id_dest, msg_2_drvr.payload};
                         agnt_2_drvr_mbx.put(msg_2_drvr);
                       	
                       	$display("");
@@ -133,6 +135,3 @@ class agent #(parameter dr = 4, pkg = 16);
     endtask
 endclass
 */
-
-
-      
