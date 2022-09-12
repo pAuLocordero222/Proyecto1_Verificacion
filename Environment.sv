@@ -28,6 +28,7 @@ class Envi #(parameter pckg_size, num_msg, drvrs, bits);
       
     endfunction
     task run();
+      inst_Driver.bus_interface=bus_interface;
         fork
             inst_age_gen.run();
           	inst_Driver.run();
@@ -39,5 +40,3 @@ class Envi #(parameter pckg_size, num_msg, drvrs, bits);
     endtask
     
 endclass
-
-
