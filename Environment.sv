@@ -40,3 +40,5 @@ class Envi #(parameter pckg_size, num_msg, drvrs, bits);
     endtask
     
 endclass
+
+

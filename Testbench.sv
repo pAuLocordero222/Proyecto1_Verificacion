@@ -1,15 +1,18 @@
 `timescale 1ns/1ps
 `include "Agent.sv"
-`include "Trans.sv"
 `include "Interface.sv"
+`include "Driver.sv"
 `include "Environment.sv"
+
+
 
 
 
 module tb;
   mailbox test_2_gen_mbx = new();
 
-  parameter pckg_size = 8;
+
+  parameter pckg_size = 16;
   parameter drvrs = 4;
   parameter bits = 1;
   parameter num_msg = 20;
@@ -29,11 +32,12 @@ module tb;
     inst_envi.bus_interface = bus_interface;
     inst_envi.run();
 
+          
+      
     //Test1: envio de datos aleatorios desde dispositivos aleatorios hacia destinos aleatorios 
     test=test1;
     test_2_gen_mbx.put(test);
-
-
+    
   end
 
 

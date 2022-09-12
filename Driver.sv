@@ -7,10 +7,6 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
   	trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) msg_2_DUT; //instancia de la clase de transferencia para guardar el mensaje que se va a enciar al DUT
   
     task run();
-      //msg_2_DUT=new;
-      //#50agent_2_drvr_mbx.peek(msg_2_DUT);
-      $display("DRIVER");
-      #20$display(agnt_2_drvr_mbx.num());
       //$display("Mensaje en driver:", msg_2_DUT.payload);//se obtiene el mensaje que se envio desde el agente
       
       for ( int i=0; i < drvrs; i++)begin //se resetea el DUT para evitar errores
