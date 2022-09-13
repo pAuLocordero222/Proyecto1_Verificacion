@@ -12,9 +12,14 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
       $display("Driver correctamente inicializado");
 
       for ( int i=0; i < drvrs; i++)begin //se resetea el DUT para evitar errores
-        bus_interface.pndng[0][i]<=0;
+        bus_interface.pndng[0][i]<=1'b0;
+        
         bus_interface.reset<=1'b1;
+        $display("Reset esta en 1:", bus_interface.reset);
+        
         #1bus_interface.reset<=1'b0;
+        
+        $display("Reset esta en 0:", bus_interface.reset);
       end
 
       for ( int j=0; j < drvrs; j++)
@@ -33,11 +38,13 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
                   $display("Se hara un push a un mensaje en el DUT");           
                   $display("dispositivo destino: %b",msg_2_DUT.id_dest);
                   $display("payload: %b",msg_2_DUT.payload);
-                  $display("Mensaje completo a enviar: %b",msg_2_DUT.D_push);
-                        bus_interface.D_push[0][j]<=msg_2_DUT.message;
-              		
-                        bus_interface.pndng[0][j]<=1'b1;
-                  $display(bus_interface.pndng[0][j]);
+              		$display("Mensaje completo a enviar: %b",msg_2_DUT.message);
+                        
+             
+              			bus_interface.D_pop[0][j]=msg_2_DUT.message;
+              			$display("Dato en DUT: ",bus_interface.D_pop[0][j]);
+              			bus_interface.pndng[0][j]<=1'b1;
+              			
 
 
             end 
