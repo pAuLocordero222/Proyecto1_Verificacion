@@ -4,10 +4,6 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
   	bit dato[pckg_size-1:0];
 	  mailbox agnt_2_drvr_mbx;
   	int number;
-<<<<<<< HEAD
-=======
-  bit [pckg_size-1:0]word;
->>>>>>> 3a3cc25f8af81ede28e16135e19e2b823bdb8e60
   
     virtual bus_if #(.bits(bits), .drvrs(drvrs), .pckg_size(pckg_size)) bus_interface; //instancia para la interface
   trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) msg_2_DUT[drvrs-1:0]; //instancia de la clase de transferencia para guardar el mensaje que se va a enciar al DUT
@@ -39,25 +35,12 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
                   //Aca se tiene que agregar el dato a la fifo emulada
                   //Aca se saca el dato de la fifo emulada
                   $display("----------Driver---------");
-<<<<<<< HEAD
               $display("t=%0t Se envia mensaje desde el dispositivo [%0d]",$time ,msg_2_DUT[j].id_emisor);           
               	$display("dispositivo destino: %b",msg_2_DUT[j].id_dest);
               	$display("payload: %b",msg_2_DUT[j].payload);
               	$display("Mensaje completo a enviar: %b",msg_2_DUT[j].message);
                         
               		bus_interface.D_pop[0][j]=msg_2_DUT[j].message;
-=======
-                  $display("Se hara un push a un mensaje en el DUT");           
-                  $display("dispositivo destino: %b",msg_2_DUT.id_dest);
-                  $display("payload: %b",msg_2_DUT.payload);
-              	  $display("Mensaje completo a enviar: %b",msg_2_DUT.message);
-                        
-              	  //word = msg_2_DUT.message;
-              $display("asfdfsd: %b ", word);
-                  number = $countbits(msg_2_DUT.message,'1,'0);
-                  $display("Numeo de bits: ", number);
-              bus_interface.D_pop[0][j]=word;
->>>>>>> 3a3cc25f8af81ede28e16135e19e2b823bdb8e60
               			$display("Dato en DUT: ",bus_interface.D_pop[0][j]);
               			bus_interface.pndng[0][j]<=1'b1;
               			
