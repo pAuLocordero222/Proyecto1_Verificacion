@@ -8,7 +8,7 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
     virtual bus_if #(.bits(bits), .drvrs(drvrs), .pckg_size(pckg_size)) bus_interface; //instancia para la interface
     trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) msg_2_DUT[drvrs-1:0]; //instancia de la clase de transferencia para guardar el mensaje que se va a enciar al DUT
     
-    Fifo #(.pckg_size(pckg_size), .pop(bus_interface.pop),.pndng(bus_interface.pndng), .D_pop(bus_interface.D_pop) ) fifo[drvrs-1:0];
+    Fifo #(.pckg_size(pckg_size) ) fifo[drvrs-1:0];
 
     task run();
       //$display("Mensaje en driver:", msg_2_DUT.payload);//se obtiene el mensaje que se envio desde el agente
