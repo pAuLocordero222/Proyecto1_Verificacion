@@ -12,7 +12,7 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
 
     function new();
       for ( int i=0; i < drvrs; i++)
-      fifo[p]=new();
+      fifo[i]=new();
     endfunction
 
     task run();
