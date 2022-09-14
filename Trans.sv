@@ -21,6 +21,8 @@ class Fifo #(parameter pckg_size);
     bit [pckg_size-1:0]q[$];
     bit [pckg_size-1:0]pndng;
 
+    task run();
+                //Funcionamiento de la FIFO
         fork 
             forever begin
                 if(q.size()>0) begin
@@ -41,4 +43,5 @@ class Fifo #(parameter pckg_size);
                 end
             end
         join_none
+    endtask
 endclass
