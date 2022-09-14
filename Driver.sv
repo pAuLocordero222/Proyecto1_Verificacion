@@ -22,7 +22,7 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
         begin//se recorren con el numero de dispositivos
 
         fork
-            fifo[i]=new();
+            fifo[p]=new();
             fifo[p].run();    
         join_none    
           fork 
