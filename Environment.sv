@@ -27,7 +27,7 @@ class Envi #(parameter pckg_size, num_msg, drvrs, bits);
       	inst_Monitor=new();
       
 
-        //Conexion de las interfases y mailboxes en el ambiente
+        //Conexion de las interfaces y mailboxes en el ambiente
       
         inst_age_gen.agnt_2_drvr_mbx = agnt_2_drvr_mbx;//conexion de mailbox entre agente y driver
       	inst_Driver.agnt_2_drvr_mbx = agnt_2_drvr_mbx;
