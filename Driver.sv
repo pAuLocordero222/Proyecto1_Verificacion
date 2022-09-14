@@ -18,11 +18,12 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
 
       for ( int p=0; p < drvrs; p++)
         begin//se recorren con el numero de dispositivos
+          fifo[j]=new();
+          fifo[j].run();        
           fork 
             automatic int j=p;
             msg_2_DUT[j]=new();
-            fifo[j]=new();
-            fifo[j].run;
+
             
             //Actualiza los valors de la fifo
             forever begin
