@@ -22,7 +22,7 @@ class Fifo #(parameter pckg_size);
     bit [pckg_size-1:0]pndng;
 
     task run();
-        $display("Mailbox: ",agnt_2_drvr_mbx.num());        //Funcionamiento de la FIFO
+                //Funcionamiento de la FIFO
         forever begin
             if(q.size()>0) begin
                 D_pop = q[-1];
