@@ -1,5 +1,7 @@
 `timescale 1ns/1ps
+`include "Library.sv"
 `include "Interface.sv"
+`include "Trans.sv"
 `include "Agent.sv"
 `include "Driver.sv"
 `include "Monitor.sv"
@@ -49,7 +51,7 @@ module tb;
     //Test1: envio de datos aleatorios desde dispositivos aleatorios hacia destinos aleatorios 
     test=test1;
     test_2_gen_mbx.put(test);
-    
+    #5000;$finish;
   end
 
 

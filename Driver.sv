@@ -43,11 +43,12 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
               		#1bus_interface.D_pop[0][j]=msg_2_DUT[j].message;
               		$display("Dato en DUT: ",bus_interface.D_pop[0][j]);
               		#1bus_interface.pndng[0][j]<=1'b1;
-              		/*if(bus_interface.push[0][msg_2_DUT[j].id_dest])begin
-                      bus_interface.pndng[0][j]<=1'b0;
-                    end*/
-
               		
+
+		if (bus_interface.pop[0][j])begin
+
+			bus_interface.pndng[0][j]<=1'b0;
+		end			
               			
 
 
