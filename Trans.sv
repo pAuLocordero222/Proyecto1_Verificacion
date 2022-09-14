@@ -16,10 +16,10 @@ class trans_bus #(parameter pckg_size, drvrs);
 endclass
 
 class Fifo #(parameter pckg_size);
-    bit [pckg_size-1:0]D_pop;
-    bit pop;
+    bit [pckg_size-1:0]D_pop=0;
+    bit pop=0;
     bit [pckg_size-1:0]q[$];
-    bit [pckg_size-1:0]pndng;
+    bit [pckg_size-1:0]pndng=0;
 
     task run();
                 //Funcionamiento de la FIFO

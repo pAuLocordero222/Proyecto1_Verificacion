@@ -28,7 +28,7 @@ class age_gen #(parameter pckg_size, num_msg, drvrs);
                       	$display("payload=%b",msg_2_drvr.payload);
                       	$display("emisor=%d",msg_2_drvr.id_emisor);
                         $display("destino=",msg_2_drvr.id_dest);
-                      	$display("aaa");
+                      	$display("");
                       
                       
                     end
