@@ -43,9 +43,16 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
       end
       #1000;
       $display("Queue 0: ",fifo[0].q);
+      $display("Queue 0 pndng: ",fifo[0].pndng);
+
       $display("Queue 1: ",fifo[1].q);
+      $display("Queue 1 pndng: ",fifo[1].pndng);
+
       $display("Queue 2: ",fifo[2].q);
+      $display("Queue 2 pndng: ",fifo[2].pndng);
+
       $display("Queue 3: ",fifo[3].q);
+      $display("Queue 3 pndng: ",fifo[3].pndng);
     endtask    
 //a
 endclass
