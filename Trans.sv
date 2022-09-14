@@ -41,3 +41,4 @@ class Fifo #(parameter pckg_size);
                 end
             end
         join_none
+endclass
