@@ -28,6 +28,7 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
           $display("olaaaa");
           fifo[p].run();          
         join_none
+        #1
         $display("Esto esta pasando");
         fork 
           automatic int j=p;
