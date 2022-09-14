@@ -21,7 +21,6 @@ class Fifo #(parameter pckg_size);
     bit [pckg_size-1:0]q[$];
     bit [pckg_size-1:0]pndng;
 
-initial begin
         fork 
             forever begin
                 if(q.size()>0) begin
@@ -42,4 +41,3 @@ initial begin
                 end
             end
         join_none
-end;
