@@ -15,7 +15,7 @@ class trans_bus #(parameter pckg_size, drvrs);
   
 endclass
 
-class Fifo #(parameter pckg_size)
+class Fifo #(parameter pckg_size);
     bit [pckg_size-1:0]D_pop;
     bit pop
     bit [pckg_size-1:0]q[$];
