@@ -13,8 +13,7 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
 
   task run();
 
-
-
+    $display("Esto esta pasando");
     //$display("Mensaje en driver:", msg_2_DUT.payload);//se obtiene el mensaje que se envio desde el agente
     $display("Driver correctamente inicializado");
     $display("Mailbox: ",agnt_2_drvr_mbx.num());
@@ -22,16 +21,10 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
 
     for ( int p=0; p < drvrs; p++)
       begin//se recorren con el numero de dispositivos
-        fork
-          fifo[p]=new();
-          #1
-          $display("olaaaa");
-          fifo[p].run();          
-        join_none
-        #1
-        $display("Esto esta pasando");
+
         fork 
           automatic int j=p;
+          fifo[j]=new();
           msg_2_DUT[j]=new();
 
           
