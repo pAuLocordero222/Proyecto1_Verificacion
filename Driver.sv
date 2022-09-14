@@ -10,7 +10,7 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
   
   Fifo #(.pckg_size(pckg_size) ) fifo[drvrs-1:0];
 
-  task run
+  task run();
     for ( int i=0; i < drvrs; i++)begin
         fifo[i]=new();
         fifo[i].run();  
