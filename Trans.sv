@@ -42,7 +42,7 @@ class Fifo #(parameter pckg_size);
                     end
                 end
             end
-            $display("La clase fifo esta corriendo")
+            $display("La clase fifo esta corriendo");
         join_none
     endtask
 endclass
