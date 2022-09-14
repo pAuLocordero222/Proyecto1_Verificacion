@@ -40,7 +40,7 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
                     agnt_2_drvr_mbx.get(msg_2_DUT[j]);
                     fifo[j].q.push_front(msg_2_DUT[j].message);
                   end
-                  $display("Queue: ",fifo[j].q);
+                  
                 end
             end
             forever begin//
@@ -76,7 +76,11 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
           join_none
 
       end
-      
+      #200;
+      $display("Queue 0: ",fifo[0].q);
+      $display("Queue 1: ",fifo[1].q);
+      $display("Queue 2: ",fifo[2].q);
+      $display("Queue 3: ",fifo[3].q);
     endtask    
 //a
 endclass
