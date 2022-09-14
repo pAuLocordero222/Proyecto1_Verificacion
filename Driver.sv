@@ -16,6 +16,7 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
         fifo[i]=new();
         fifo[i].run();  
     end
+    $display("Esto esta pasando");
     //$display("Mensaje en driver:", msg_2_DUT.payload);//se obtiene el mensaje que se envio desde el agente
     $display("Driver correctamente inicializado");
     $display("Mailbox: ",agnt_2_drvr_mbx.num());
