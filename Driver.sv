@@ -12,14 +12,7 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
 
 
   task run();
-    fork
-      for ( int i=0; i < drvrs; i++)begin
-          fifo[i]=new();
-          #1
-          $display("olaaaa");
-          fifo[i].run();
-      end
-    join_none
+
 
     $display("Esto esta pasando");
     //$display("Mensaje en driver:", msg_2_DUT.payload);//se obtiene el mensaje que se envio desde el agente
@@ -29,6 +22,12 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
 
     for ( int p=0; p < drvrs; p++)
       begin//se recorren con el numero de dispositivos
+        fork
+          fifo[i]=new();
+          #1
+          $display("olaaaa");
+          fifo[i].run();          
+        join_none
 
         fork 
           automatic int j=p;
