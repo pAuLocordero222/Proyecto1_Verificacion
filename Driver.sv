@@ -12,7 +12,7 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
 
     initial begin
       for ( int i=0; p < drvrs; i++)begin
-          ifo[i]=new();
+          fifo[i]=new();
           fifo[i].run();  
       end
     end
