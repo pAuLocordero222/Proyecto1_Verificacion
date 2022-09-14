@@ -17,7 +17,7 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
           fifo[i]=new();
           #1
           fork
-            $display("olaaaa")
+            $display("olaaaa");
             fifo[i].run();
           join_none
       end
