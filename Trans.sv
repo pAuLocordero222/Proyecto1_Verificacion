@@ -23,7 +23,7 @@ class Fifo #(parameter pckg_size);
 
     task run();
                 //Funcionamiento de la FIFO
-        fork begin
+        fork 
             forever begin
                 if(q.size()>0) begin
                     D_pop = q[-1];
