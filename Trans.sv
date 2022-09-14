@@ -15,33 +15,39 @@ class trans_bus #(parameter pckg_size, drvrs);
   
 endclass
 
-class Fifo #(parameter pckg_size);
+class Fifo #(parameter pckg_size, drvrs, bits);
     bit [pckg_size-1:0]D_pop;
     bit pop;
     bit [pckg_size-1:0]q[$];
     bit [pckg_size-1:0]pndng;
 
+
+    virtual bus_if #(.bits(bits), .drvrs(drvrs), .pckg_size(pckg_size)) vif;
+
+    vif.D_pop = D_pop;
+    vif.pop = pop;
+    vif.pndng = pndng;
+
     task run();
                 //Funcionamiento de la FIFO
-        fork 
             forever begin
-                if(q.size()>0) begin
-                    D_pop = q[-1];
-                    pndng = 1;
-                end
-
-                else begin
-                    pndng = 0;
-                    D_pop = 0;
-                end
-
-                //POP
-                if(pop) begin
-                    if (q.size() != 0) begin
-                        q.pop_back;
+                @(posedge vif.clk)
+                    if(q.size()>0) begin
+                        D_pop = q[-1];
+                        pndng = 1;
                     end
-                end
+
+                    else begin
+                        pndng = 0;
+                        D_pop = 0;
+                    end
+
+                    //POP
+                    if(pop) begin
+                        if (q.size() != 0) begin
+                            q.pop_back;
+                        end
+                    end
             end
-        join_none
     endtask
 endclass

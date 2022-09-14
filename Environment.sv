@@ -6,12 +6,13 @@ class Envi #(parameter pckg_size, num_msg, drvrs, bits);
     age_gen #(.pckg_size(pckg_size), .num_msg(num_msg), .drvrs(drvrs)) inst_age_gen;
   	driver #(.pckg_size(pckg_size), .num_msg(num_msg), .drvrs(drvrs), .bits(bits)) inst_Driver;
   	monitor #(.pckg_size(pckg_size), .num_msg(num_msg), .drvrs(drvrs), .bits(bits)) inst_Monitor;
+
   
 	mailbox agnt_2_drvr_mbx;
 
 
 
-    virtual bus_if #(.bits(bits), .drvrs(drvrs), .pckg_size(pckg_size)) bus_interface;
+    virtual bus_if #(.bits(bits), .drvrs(drvrs), .pckg_size(pckg_size)) vif;
 
     //Declaracion de los mailboxes
     //mailbox test_2_gen_mbx;
@@ -36,8 +37,12 @@ class Envi #(parameter pckg_size, num_msg, drvrs, bits);
       
     endfunction
     task run();
-      inst_Driver.bus_interface=bus_interface;
-      inst_Monitor.bus_interface=bus_interface;
+      inst_Driver.vif=vif;
+      inst_Monitor.vif=vif;
+
+      for (int i; i <= drvrs; i++) begin
+        inst_Driver.fifo[i].vif=vif;
+      end
       
         fork
             inst_age_gen.run();
