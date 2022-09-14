@@ -26,7 +26,7 @@ class age_gen #(parameter pckg_size, num_msg, drvrs);
                       	$display("");
                       	$display("Agente: Instruccion de Test1 creada");
                       	$display("payload=%b",msg_2_drvr.payload);
-                      	$display("emisor=%b",msg_2_drvr.id_emisor);
+                      	$display("emisor=%d",msg_2_drvr.id_emisor);
                         $display("destino=",msg_2_drvr.id_dest);
                       	$display("");
                       

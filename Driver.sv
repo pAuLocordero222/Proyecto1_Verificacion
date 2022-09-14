@@ -53,7 +53,7 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
                   //Aca se saca el dato de la fifo emulada
                 $display("----------Driver---------");
                 $display("t=%0t Se envia mensaje desde el dispositivo [%0d]",$time ,msg_2_DUT[j].id_emisor);           
-              	$display("dispositivo destino: %b",msg_2_DUT[j].id_dest);
+              	$display("dispositivo destino: %d",msg_2_DUT[j].id_dest);
               	$display("payload: %b",msg_2_DUT[j].payload);
               	$display("Mensaje completo a enviar: %b",msg_2_DUT[j].message);
 

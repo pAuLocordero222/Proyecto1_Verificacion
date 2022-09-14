@@ -10,8 +10,8 @@ class trans_bus #(parameter pckg_size, drvrs);
     int max_retardo=25;
   
     constraint const_retardo {retardo < max_retardo; retardo > 0;}
-    constraint const_emisor {id_emisor < drvrs; id_emisor > 0;}
-    constraint const_dest {id_dest < drvrs; id_dest > 0; id_dest != id_emisor;}
+    constraint const_emisor {id_emisor < drvrs; id_emisor >= 0;}
+    constraint const_dest {id_dest < drvrs; id_dest >= 0; id_dest != id_emisor;}
   
 endclass
 
