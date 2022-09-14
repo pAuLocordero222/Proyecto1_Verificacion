@@ -14,4 +14,39 @@ class trans_bus #(parameter pckg_size, drvrs);
     constraint const_dest {id_dest < drvrs; id_dest > 0; id_dest != id_emisor;}
   
 endclass
-  
+
+class Fifo #(parameter pckg_size)
+    bit [pckg_size-1:0]D_pop;
+    bit pop
+    bit [pckg_size-1:0]q[$];
+    bit [pckg_size-1:0]pndng;
+
+    task run();
+        //Funcionamiento de la FIFO
+        forever begin
+            if(q) begin
+                D_pop = q[-1];
+                pndng = 1;
+            end
+
+            else begin
+                pndng = 0;
+                D_pop = 0;
+            end
+
+            //POP
+            if(pop) begin
+                if (q.size() != 0) begin
+                    q.pop_back;
+                end
+            end
+        end
+
+
+    endtask
+
+
+
+
+
+endclass
