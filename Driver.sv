@@ -76,7 +76,7 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
           join_none
 
       end
-      #200;
+      #1000;
       $display("Queue 0: ",fifo[0].q);
       $display("Queue 1: ",fifo[1].q);
       $display("Queue 2: ",fifo[2].q);
