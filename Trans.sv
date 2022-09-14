@@ -25,7 +25,7 @@ class Fifo #(parameter pckg_size);
                 //Funcionamiento de la FIFO
         fork
             forever begin
-                $display("Esto esta pasando en el task de la");
+                //$display("Esto esta pasando en el task de la");
                 if(q.size()>0) begin
                     D_pop = q[-1];
                     pndng = 1;
