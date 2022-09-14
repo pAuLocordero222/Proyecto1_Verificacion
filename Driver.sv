@@ -21,6 +21,7 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
 
 
     for ( int p=0; p < drvrs; p++)
+      automatic int j=p;
       begin//se recorren con el numero de dispositivos
         fork
           fifo[i]=new();
@@ -30,7 +31,7 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
         join_none
 
         fork 
-          automatic int j=p;
+          
           msg_2_DUT[j]=new();
 
           
