@@ -14,15 +14,6 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
       $display("Driver correctamente inicializado");
       $display("Mailbox: ",agnt_2_drvr_mbx.num());
 
-/*
-      for ( int i=0; i < drvrs; i++)begin //se resetea el DUT para evitar errores
-        bus_interface.pndng[0][i]<=1'b0;
-        
-        bus_interface.reset<=1'b1;
-        
-        #1;bus_interface.reset<=1'b0;
-        
-      end*/
 
       for ( int p=0; p < drvrs; p++)
         begin//se recorren con el numero de dispositivos
@@ -44,36 +35,7 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
                   
                 end
             end
-            /*
-            forever begin//
-              @(posedge bus_interface.clk)
-              agnt_2_drvr_mbx.peek(msg_2_DUT[j]);//Se obtiene la instruccion que viene desde el agente y se asigna a una variable trans_BUS
-              if (msg_2_DUT[j].id_emisor==j)begin//se revisa si la instruccion tiene como emisor el dispositijo j
-                agnt_2_drvr_mbx.get(msg_2_DUT[j]);//Si se cumple la condicion se saca el mensaje del bus
-              end
-                  //Aca se tiene que agregar el dato a la fifo emulada
-                  //Aca se saca el dato de la fifo emulada
-                $display("----------Driver---------");
-                $display("t=%0t Se envia mensaje desde el dispositivo [%0d]",$time ,msg_2_DUT[j].id_emisor);           
-              	$display("dispositivo destino: %d",msg_2_DUT[j].id_dest);
-              	$display("payload: %b",msg_2_DUT[j].payload);
-              	$display("Mensaje completo a enviar: %b",msg_2_DUT[j].message);
 
-
-
-              		#1bus_interface.D_pop[0][j]=msg_2_DUT[j].message;
-              		$display("Dato en DUT: ",bus_interface.D_pop[0][j]);
-              		#1bus_interface.pndng[0][j]<=1'b1;
-              		
-
-		if (bus_interface.pop[0][j])begin
-
-			bus_interface.pndng[0][j]<=1'b0;
-		end			
-              			
-
-
-            end */
 
           join_none
 
