@@ -14,7 +14,10 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
   task run();
 
       for ( int i=0; i < drvrs; i++)begin
-          fifo[i]=new();  
+          fifo[i]=new();
+          fork
+            fifo[i].run();
+          join_none
       end
 
     $display("Esto esta pasando");
