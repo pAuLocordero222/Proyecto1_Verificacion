@@ -23,7 +23,6 @@ class Fifo #(parameter pckg_size);
 
     task run();
                 //Funcionamiento de la FIFO
-        fork
             forever begin
                 //$display("Esto esta pasando en el task de la");
                 if(q.size()>0) begin
@@ -43,6 +42,5 @@ class Fifo #(parameter pckg_size);
                     end
                 end
             end
-        join_none
     endtask
 endclass
