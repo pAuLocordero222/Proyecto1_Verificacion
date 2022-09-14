@@ -36,7 +36,7 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
                 if(agnt_2_drvr_mbx.num()>0) begin
                   agnt_2_drvr_mbx.peek(msg_2_DUT[j]);
 
-                  if(msg_2_DUT.id_emisor==j) begin
+                  if(msg_2_DUT[j].id_emisor==j) begin
                     agnt_2_drvr_mbx.get(msg_2_DUT[j]);
                     fifo[j].q.push_front(msg_2_DUT[j].message);
                   end
