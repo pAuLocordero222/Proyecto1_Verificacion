@@ -16,16 +16,11 @@ class trans_bus #(parameter pckg_size, drvrs);
 endclass
 
 class Fifo #(parameter pckg_size, drvrs, bits);
-    //bit [pckg_size-1:0]D_pop;
-    //bit pop;
+
     bit [pckg_size-1:0]q[$];
     int k;
-    //bit [pckg_size-1:0]pndng;
+
     virtual bus_if #(.bits(bits), .drvrs(drvrs), .pckg_size(pckg_size)) vif;
-/*
-    vif.D_pop = D_pop;
-    vif.pop = pop;
-    vif.pndng = pndng;*/
 
     task run();
                 //Funcionamiento de la FIFO
@@ -44,7 +39,6 @@ class Fifo #(parameter pckg_size, drvrs, bits);
                     //Fifo vacia
                     else begin
                         vif.pndng[0][k] = 1'b0;
-                        vif.D_pop[0][k] = 0;
                         $display("si se lee esto el pending deberia estar en 0:", vif.pndng[0][k]);
                     end
 
