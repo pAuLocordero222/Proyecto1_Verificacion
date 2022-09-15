@@ -5,7 +5,7 @@ class checker #(parameter pckg_size, num_msg, drvrs, bits);
 
     trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) msg_agnt_chckr[pckg_size-1:0], msg_mntr_chckr[pckg_size-1:0];
     
-    task run():
+    task run();
         $display("[%g] El checker fue inicializado.", $time);
         msg_agnt_chckr = new;
         msg_mntr_chckr = new;
