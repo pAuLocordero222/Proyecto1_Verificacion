@@ -25,6 +25,7 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
 
       for (int i=0; i < drvrs; i++) begin
         fifo[i].vif=vif;
+        vif.pndng[i]=0;
         $display("Fifo [%d] creada", i);
       end      
 
