@@ -10,7 +10,7 @@ class checker #(parameter pckg_size, num_msg, drvrs, bits);
         $display("[%g] El checker fue inicializado.", $time);
         msg_agnt_chckr = new;
         msg_mntr_chckr = new;
-        @AgenteListo;
+        #1000;
         for (int i = 0; i < agnt_2_chckr_mbx.num(); i++) begin
             mntr_2_chckr_mbx.get(msg_mntr_chckr); //Se obtiene el dato desde el monitor
             agnt_2_chckr_mbx.get(msg_agnt_chckr); //Se obtiene el dato desde el agente
