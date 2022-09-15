@@ -57,6 +57,8 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
                 end
             $display("Dato actual de la fifo: %d en el D_pop: %b ", j,vif.D_pop[0][j]);
             $display("Push del dispositivo %0d %0d: ",j,vif.push[0][j]);
+            $display("pndng del dispositivo %0d %0d: ",j,vif.pndng[0][j]);
+
             end
 
 
