@@ -53,7 +53,7 @@ module tb;
     //Test2: se envian datos aleatorios a destinos aleatorios pero pasando por cada uno de los dispositivos hasta que todos hayan enviado un mensaje
     test=test2;
     test_2_gen_mbx.put(test);
-    #5000;$finish;
+    #15000;$finish;
   end
 
 
