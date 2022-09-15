@@ -21,7 +21,7 @@ class checker #(parameter pckg_size, num_msg, drvrs, bits);
             $display("Mensaje del monitor: %b", msg_mntr_chckr.message);
             
             if (msg_mntr_chckr.message == msg_agnt_chckr.message) begin
-                $display("La transaccion fue realizada correctamente");
+                $display("La transaccion %0d fue realizada correctamente", i);
                 $display("---------------------------");
             end
 
