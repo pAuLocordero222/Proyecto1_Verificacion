@@ -25,9 +25,10 @@ class Fifo #(parameter pckg_size, drvrs, bits);
     task run();
             //Funcionamiento de la FIFO'
             $display("numero de elementos en fifo %0d es de %0d",k, q.size());
-   
+            vif.pndng[0][k]= 1'b0;
             forever begin               
                 @(posedge vif.clk)
+                vif.D_pop[0][k]= q[0];
 
 
                     /*$display("");
