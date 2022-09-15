@@ -29,7 +29,7 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
         vif.push[0][1]=1'b0;
         $display("");
         $display("------Driver-----");
-        $display("t=$0dns Fifo[%d] creada", $time, i);
+        $display("t=%0dns Fifo %d creada", $time, i);
         $display("");
 
       end      
@@ -65,7 +65,7 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
                     $display("t=%0dns Mensaje ingresado en la fifo de entrada %0d", $time, j);
                     $display("Emisor %d", msg_2_DUT[j].id_emisor);
                     $display("Receptor %d", msg_2_DUT[j].id_dest);
-                    $display("Payload %d", msg_2_DUT[j].payload);  
+                    $display("Payload %b", msg_2_DUT[j].payload);  
                     $display("");
 
                   end
