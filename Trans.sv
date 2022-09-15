@@ -26,7 +26,7 @@ class Fifo #(parameter pckg_size, drvrs, bits);
                 //Funcionamiento de la FIFO
             forever begin
                 
-                @(posedge vif.clk)
+                @(negedge vif.clk)
                                  
                     if(q.size()>0) begin
 
