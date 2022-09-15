@@ -8,7 +8,8 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
     
     Fifo #(.bits(bits), .drvrs(drvrs), .pckg_size(pckg_size) ) fifo[drvrs-1:0];
 
-
+  vif.reset=0
+vif.reset=0
     function new();
     
     for ( int p=0; p < drvrs; p++)begin
@@ -21,7 +22,7 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
     task run();
     
       $display("Driver correctamente inicializado");
-
+      vif.reset= 1'b1;
 
       for (int i=0; i < drvrs; i++) begin
         fifo[i].vif=vif;
@@ -46,6 +47,8 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
             //Actualiza los valors de la fifo
             forever begin
               @(posedge vif.clk)
+              vif.reset= 1'b0;
+
                 if(agnt_2_drvr_mbx.num()>0) begin
                   agnt_2_drvr_mbx.peek(msg_2_DUT[j]);
 
@@ -65,18 +68,6 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
           join_none
 
       end
-      #1000;
-      $display("Queue 0: ",fifo[0].q);
-      //$display("Queue 0 pndng: ",fifo[0].vif.pndng[0]);
-
-      $display("Queue 1: ",fifo[1].q);
-      //$display("Queue 1 pndng: ",fifo[1].vif.pndng[1];
-
-      $display("Queue 2: ",fifo[2].q);
-      //$display("Queue 2 pndng: ",fifo[2].vif.pndng[2];
-
-      $display("Queue 3: ",fifo[3].q);
-      //$display("Queue 3 pndng: ",fifo[3].vif.pndng[3]);
     endtask    
 //a
 endclass
