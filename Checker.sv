@@ -21,7 +21,7 @@ class checker #(parameter pckg_size, num_msg, drvrs, bits);
             end
 
             else begin
-                $display("ERROR: no se recibio el mensaje correctamente");
+                $display("ERROR: no se recibio el mensaje %d correctamente", i);
             end
 
         end
