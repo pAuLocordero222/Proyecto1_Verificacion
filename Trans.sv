@@ -1,4 +1,4 @@
-typedef enum{test1, test2, test3, test4, test5, test6, test7} tipo_test;
+typedef enum{test1, test2} tipo_test;
 
 class trans_bus #(parameter pckg_size, drvrs);
     rand int retardo; //numero de ciclos de reloj que se deben esperar para ejecutar la instruccion
