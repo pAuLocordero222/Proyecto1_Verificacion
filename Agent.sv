@@ -35,10 +35,27 @@ class age_gen #(parameter pckg_size, num_msg, drvrs);
                       
                     end
                 end
+                    for (int i = 0; i < drvrs; i++) begin
+                        trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) msg_2_drvr;
+                        msg_2_drvr = new;
+                        msg_2_drvr.randomize();
+                        msg_2_drvr.id_emisor=i;
 
+                        msg_2_drvr.message={msg_2_drvr.id_dest, msg_2_drvr.payload};
+                        agnt_2_drvr_mbx.put(msg_2_drvr);
+                        agnt_2_chckr_mbx.put(msg_2_drvr);
+                      	
+                      	$display("");
+                      	$display("Agente: Instruccion de Test2 creada");
+                      	$display("payload=%b",msg_2_drvr.payload);
+                      	$display("emisor=%d",msg_2_drvr.id_emisor);
+                        $display("destino=",msg_2_drvr.id_dest);
+                      	$display("");
+                      
+                                            
             test2:
                 begin
-                  $display("test2");   
+
                 end
 
 
