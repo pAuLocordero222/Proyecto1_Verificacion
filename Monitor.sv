@@ -7,7 +7,7 @@ class monitor #(parameter pckg_size, num_msg, drvrs, bits);
   
   task run();
     $display("t=%0d Monitor correctamente inicializado", $time);
-
+    int cont=0;
     for ( int j=0; j < drvrs; j++)begin
       	
         fork
