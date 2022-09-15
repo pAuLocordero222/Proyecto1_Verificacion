@@ -27,12 +27,10 @@ class Fifo #(parameter pckg_size, drvrs, bits);
             forever begin
                 
                 @(posedge vif.clk)
-                $display("Esto esta pasando en la fifo ", k);
                     vif.D_pop[0][k] = q[0];                
                     if(q.size()>0) begin
                         
                         vif.pndng[0][k] = 1'b1;
-                        $display("Dato actual de la fifo: %d en el D_pop: %b ", k,vif.D_pop[0][k]);
 
                     end
                     //Fifo vacia
@@ -42,7 +40,7 @@ class Fifo #(parameter pckg_size, drvrs, bits);
 
                     //POP
                     if(vif.pop[0][k]) begin
-                        $display("si se lee esto el pop deberia estar en 0:", vif.pop[0][k]);
+                        $display("si se lee esto el pop deberia estar en 1:", vif.pop[0][k]);
                         if (q.size() != 0) begin
                             q.pop_front;
                         end
