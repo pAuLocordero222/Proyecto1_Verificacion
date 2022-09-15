@@ -1,5 +1,6 @@
 class monitor #(parameter pckg_size, num_msg, drvrs, bits);
 
+   mailbox mntr_2_chckr_mbx;
 
   trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) msg_2_Monitor[drvrs-1:0];
     virtual bus_if #(.bits(bits), .drvrs(drvrs), .pckg_size(pckg_size)) vif;
@@ -19,6 +20,7 @@ class monitor #(parameter pckg_size, num_msg, drvrs, bits);
                 $display("push en la salida: ", vif.push[0][i]);
                 //falta la parte donde el dato entra a la fifo simulada y tambien sale de esta
                 msg_2_Monitor[i].message<=vif.D_push[0][i]; 
+                mntr_2_chckr_mbx.put(msg_2_Monitor[i]);
               	$display(""); 
                 $display("------Monitor-----"); 
                 $display("t=%0dns  Se obtuvo el mensaje: %b",$time, msg_2_Monitor[i].message);
