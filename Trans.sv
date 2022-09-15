@@ -19,13 +19,14 @@ class Fifo #(parameter pckg_size, drvrs, bits);
 
     bit [pckg_size-1:0]q[$];
     int k;
+    int cont=0;  
 
     virtual bus_if #(.bits(bits), .drvrs(drvrs), .pckg_size(pckg_size)) vif;
 
     task run();
             $display("mmmm contenido en fifo %0d es de %0d",k, q.size());
                 //Funcionamiento de la FIFO'
-            int cont=0;    
+              
             forever begin    
                            
                 @(posedge vif.clk)
