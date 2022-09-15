@@ -29,7 +29,7 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
         vif.push[0][1]=1'b0;
         $display("");
         $display("------Driver-----");
-        $display("t=$0dns Fifo %0d creada",$time, i);
+        $display("t=$0dns Fifo numero %0d creada", $time, i);
         $display("");
       end      
 
