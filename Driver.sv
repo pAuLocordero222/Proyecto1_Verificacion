@@ -9,23 +9,22 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
     Fifo #(.bits(bits), .drvrs(drvrs), .pckg_size(pckg_size) ) fifo[drvrs-1:0];
 
 
-  /*  function new();
+    function new();
+    
     for ( int p=0; p < drvrs; p++)begin
       fifo[p]=new();
       fifo[p].k = p;
     end
     endfunction
-      */
+      
+
     task run();
     
       $display("Driver correctamente inicializado");
 
-
+      #1
       for (int i; i <= drvrs; i++) begin
         fifo[i].vif=vif;
-        #1
-        fifo[i]=new();
-        fifo[i].k = i;
       end      
 
       for ( int p=0; p < drvrs; p++)
