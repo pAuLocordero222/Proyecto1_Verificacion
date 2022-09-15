@@ -62,7 +62,7 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
                     fifo[j].q.push_back(msg_2_DUT[j].message);// se hace un push de la palabra a la fifo simulada
                     $display("");
                     $display("------------------------Driver---------------------------");
-                    $display("Transaccion %0d", j;
+                    $display("Transaccion %0d", j;);
                     $display("t=%0dns Mensaje ingresado en la fifo de entrada %0d", $time, j);
                     $display("Emisor %d", msg_2_DUT[j].id_emisor);
                     $display("Receptor %d", msg_2_DUT[j].id_dest);
