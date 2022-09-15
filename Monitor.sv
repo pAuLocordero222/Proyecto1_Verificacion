@@ -6,7 +6,7 @@ class monitor #(parameter pckg_size, num_msg, drvrs, bits);
     
   
   task run();
-    $display("Monitor correctamente inicializado");
+    $display("t=%0d Monitor correctamente inicializado", $time);
 
     for ( int j=0; j < drvrs; j++)begin
       	
@@ -21,8 +21,9 @@ class monitor #(parameter pckg_size, num_msg, drvrs, bits);
                 msg_2_Monitor[i].message<=vif.D_push[0][i]; 
               	$display(""); 
                 $display("------Monitor-----"); 
-                $display("Se obtuvo el mensaje: %b",msg_2_Monitor[i].message);
+                $display("t= %od ns  Se obtuvo el mensaje: %b",$time, msg_2_Monitor[i].message);
                 $display("en el dispositivo", i);
+                $display(""); 
               end
      
 

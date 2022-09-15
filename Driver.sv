@@ -29,7 +29,7 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
         vif.push[0][1]=1'b0;
         $display("");
         $display("------Driver-----");
-        $display("Fifo %0d creada", i);
+        $display("t=$0d Fifo %0d creada",$time, i);
         $display("");
       end      
 
@@ -59,8 +59,10 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
                   if(msg_2_DUT[j].id_emisor==j) begin//se revisa si la direccion de emisor que indica la instruccion coincide con el disipositivo en el cual se esta iterando
                     agnt_2_drvr_mbx.get(msg_2_DUT[j]);// si se cumple la condicion saca la instruccion del mailbox
                     fifo[j].q.push_back(msg_2_DUT[j].message);// se hace un push de la palabra a la fifo simulada
+                    $display("");
                     $display("------Driver-----");
-                    $display("Mensaje ingresado en la fifo de entrada %0d", j);
+                    $display("t=%0d Mensaje ingresado en la fifo de entrada %0d", $time, j);
+                    $display("");
 
                   end
                   
