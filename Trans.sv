@@ -21,7 +21,7 @@ class Fifo #(parameter pckg_size, drvrs, bits);
     int k;
     int cont=0; 
     virtual bus_if #(.bits(bits), .drvrs(drvrs), .pckg_size(pckg_size)) vif;
-    vif.D_pop[0][k]= q[0];
+    
 
     task run();
             //Funcionamiento de la FIFO'
@@ -30,6 +30,7 @@ class Fifo #(parameter pckg_size, drvrs, bits);
             forever begin
                                
                 @(posedge vif.clk)
+                vif.D_pop[0][k]= q[0];
                 
                     /*$display("");
                     $display("D_pop en %0d es:%0b",k, vif.D_pop[0][k]);
