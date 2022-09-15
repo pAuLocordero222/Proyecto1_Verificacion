@@ -23,7 +23,9 @@ class Fifo #(parameter pckg_size, drvrs, bits);
     virtual bus_if #(.bits(bits), .drvrs(drvrs), .pckg_size(pckg_size)) vif;
 
     task run();
-                //Funcionamiento de la FIFO
+                //Funcionamiento de la FIFO'
+                
+            vif.pndng[0][k] <= 1'b0;
             forever begin
                 
                 @(posedge vif.clk)
