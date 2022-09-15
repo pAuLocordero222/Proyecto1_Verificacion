@@ -21,7 +21,7 @@ class monitor #(parameter pckg_size, num_msg, drvrs, bits);
                 msg_2_Monitor[i].message<=vif.D_push[0][i]; 
               	$display(""); 
                 $display("------Monitor-----"); 
-                $display("t=%0t ns  Se obtuvo el mensaje: %b",$time, msg_2_Monitor[i].message);
+                $display("t=%0dns  Se obtuvo el mensaje: %b",$time, msg_2_Monitor[i].message);
                 $display("en el dispositivo", i);
                 $display(""); 
               end
