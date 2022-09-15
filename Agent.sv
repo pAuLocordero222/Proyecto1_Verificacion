@@ -41,30 +41,6 @@ class age_gen #(parameter pckg_size, num_msg, drvrs);
                   $display("test2");   
                 end
 
-            test3:
-                begin
-                    
-                end
-
-            test4:
-                begin
-                    
-                end
-
-            test5:
-                begin
-                    
-                end
-
-            test6:
-                begin
-                    
-                end
-
-            test7:
-                begin
-                    
-                end
 
         endcase
 

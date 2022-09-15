@@ -17,7 +17,6 @@ class monitor #(parameter pckg_size, num_msg, drvrs, bits);
             forever begin//
               @(posedge vif.clk)
               if (vif.push[0][i]==1)begin
-                $display("push en la salida: ", vif.push[0][i]);
                 //falta la parte donde el dato entra a la fifo simulada y tambien sale de esta
                 msg_2_Monitor[i].message<=vif.D_push[0][i]; 
                 mntr_2_chckr_mbx.put(msg_2_Monitor[i]);
