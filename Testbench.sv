@@ -5,6 +5,7 @@
 `include "Agent.sv"
 `include "Driver.sv"
 `include "Monitor.sv"
+`include "Checker.sv"
 `include "Environment.sv"
 
 
