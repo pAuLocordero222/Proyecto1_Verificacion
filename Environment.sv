@@ -29,8 +29,8 @@ class Envi #(parameter pckg_size, num_msg, drvrs, bits);
       
         //Instanciacion de los componentes del ambiente
         inst_age_gen = new();
-      	inst_Driver=new();
-      	inst_Monitor=new();
+      	inst_Driver = new();
+      	inst_Monitor = new();
         inst_checker = new();
       
 
@@ -39,7 +39,9 @@ class Envi #(parameter pckg_size, num_msg, drvrs, bits);
         inst_age_gen.agnt_2_drvr_mbx = agnt_2_drvr_mbx;//conexion de mailbox entre agente y driver
       	inst_Driver.agnt_2_drvr_mbx = agnt_2_drvr_mbx;
         inst_checker.agnt_2_chckr_mbx = agnt_2_chckr_mbx;
+        inst_age_gen.agnt_2_chckr_mbx = agnt_2_chckr_mbx;
         inst_checker.mntr_2_chckr_mbx = mntr_2_chckr_mbx;
+        inst_Monitor.mntr_2_chckr_mbx = mntr_2_chckr_mbx;
       
 
       
