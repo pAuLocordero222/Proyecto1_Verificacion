@@ -30,9 +30,11 @@ class Fifo #(parameter pckg_size, drvrs, bits);
                                  
                     if(q.size()>0) begin
 
+
                         vif.D_pop[0][k] <= q[0];
                         vif.pndng[0][k] <= 1'b1;
                         vif.D_pop[0][k] <= q[0];
+                        $display("contenido en fifo %d es de %d",k, q.size());
                         $display("pndng %d esta en %d",k, vif.pndng[0][k]);
                         $display("D_pop en %d es:%d",k, vif.D_pop[0][k]);
 
