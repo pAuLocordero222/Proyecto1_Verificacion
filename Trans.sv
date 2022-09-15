@@ -17,7 +17,7 @@ endclass
 
 class Fifo #(parameter pckg_size, drvrs, bits);
 
-    bit [pckg_size-1:0]q[$]=;
+    bit [pckg_size-1:0]q[$];
     int k;
 
     virtual bus_if #(.bits(bits), .drvrs(drvrs), .pckg_size(pckg_size)) vif;
