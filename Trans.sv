@@ -25,17 +25,16 @@ class Fifo #(parameter pckg_size, drvrs, bits);
     task run();
                 //Funcionamiento de la FIFO'
                 
-            vif.pndng[0][k] <= 1'b0;
             forever begin
                 
                 
                 @(posedge vif.clk)
+
                 vif.D_pop[0][k]= q[0];
-                    $display("")   
+
                     $display("D_pop en %0d es:%0b",k, vif.D_pop[0][k]);
                     $display("pndng %0d esta en %0d",k, vif.pndng[0][k]);
-                    $display("push %0d esta en %0d",k, vif.push[0][k]);
-                    $display("")               
+                    $display("push %0d esta en %0d",k, vif.push[0][k]);              
                    if(q.size()>0) begin
     
                         vif.pndng[0][k]= 1'b1;
