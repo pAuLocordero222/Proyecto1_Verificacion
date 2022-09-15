@@ -32,7 +32,10 @@ class Fifo #(parameter pckg_size, drvrs, bits);
 
                         vif.D_pop[0][k] <= q[0];
                         vif.pndng[0][k] <= 1'b1;
-                        $display("pndng %d esta en %d",k, vif.pndng[0][k])
+                        vif.D_pop[0][k] <= q[0];
+                        $display("pndng %d esta en %d",k, vif.pndng[0][k]);
+                        $display("D_pop en %d es:%d",k, vif.D_pop[0][k]);
+
 
                     end
                     //Fifo vacia
