@@ -39,7 +39,7 @@ class Envi #(parameter pckg_size, num_msg, drvrs, bits);
     task run();
       inst_Driver.vif=vif;
       inst_Monitor.vif=vif;
-      inst_Driver.function();
+      inst_Driver.new();
       for (int i; i <= drvrs; i++) begin
         inst_Driver.fifo[i].vif=vif;
       end
