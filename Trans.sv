@@ -25,13 +25,12 @@ class Fifo #(parameter pckg_size, drvrs, bits);
     task run();
                 //Funcionamiento de la FIFO
             forever begin
-                vif.D_pop[0][k]= q[0];
+                
                 @(posedge vif.clk)
-                                 
-                    if(q.size()>0) begin
-
-
-                        
+                vif.D_pop[0][k]= q[0];
+                               
+                #1   if(q.size()>0) begin
+    
                         vif.pndng[0][k]= 1'b1;
                         
                        /* $display("contenido en fifo %0d es de %0d",k, q.size());
