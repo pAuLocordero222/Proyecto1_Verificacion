@@ -54,6 +54,7 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
                   end
                   
                 end
+            $display("Dato actual de la fifo: %d en el D_pop: %b ", j,vif.D_pop[0][j]);
             end
 
 
