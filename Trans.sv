@@ -30,6 +30,7 @@ class Fifo #(parameter pckg_size, drvrs, bits);
     task run();
                 //Funcionamiento de la FIFO
             forever begin
+                $display("Esto esta pasando en la fifo ", k)
                 @(posedge vif.clk)
                     vif.D_pop[0][k] = q[0];                
                     if(q.size()>0) begin
