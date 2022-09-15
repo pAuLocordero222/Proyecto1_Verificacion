@@ -45,6 +45,7 @@ class Fifo #(parameter pckg_size, drvrs, bits);
                     else begin
                         vif.pndng[0][k] = 1'b0;
                         vif.D_pop[0][k] = 0;
+                        $display("si se lee esto el pending deberia estar en 0:", vif.pndng[0][k]);
                     end
 
                     //POP
