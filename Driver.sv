@@ -25,8 +25,8 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
 
       for (int i=0; i < drvrs; i++) begin
         fifo[i].vif=vif;//se conecta la interfaz de cada fifo con la interfaz del DUT
-        vif.pndng[0][i]=1'b0;
-        vif.push[0][1]=1'b0;
+        vif.pndng[0][i]=0;
+        vif.push[0][1]=0;
         $display("");
         $display("------Driver-----");
         $display("t=%0dns Fifo %0d creada", $time, i);
@@ -53,6 +53,7 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
             forever begin
               @(posedge vif.clk)
               vif.reset= 1'b0;//se pone el reset en 0 
+
 
                 if(agnt_2_drvr_mbx.num()>0) begin//se revisa si el mailbox tiene algun mensaje 
                   agnt_2_drvr_mbx.peek(msg_2_DUT[j]);//se asigna la primer instruccion del mailbox al objeto de transferencia para poder comparar
