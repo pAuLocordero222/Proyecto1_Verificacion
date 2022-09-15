@@ -21,8 +21,6 @@ class Fifo #(parameter pckg_size, drvrs, bits);
     bit [pckg_size-1:0]q[$];
     int k;
     //bit [pckg_size-1:0]pndng;
-
-
     virtual bus_if #(.bits(bits), .drvrs(drvrs), .pckg_size(pckg_size)) vif;
 /*
     vif.D_pop = D_pop;
@@ -34,17 +32,17 @@ class Fifo #(parameter pckg_size, drvrs, bits);
             forever begin
                 @(posedge vif.clk)
                     if(q.size()>0) begin
-                        vif.D_pop[k] = q[-1];
-                        vif.pndng[k] = 1;
+                        vif.D_pop[0][k] = q[-1];
+                        vif.pndng[0][k] = 1;
                     end
                     //Fifo vacia
                     else begin
-                        vif.pndng[k] = 0;
-                        vif.D_pop[k] = 0;
+                        vif.pndng[0][k] = 0;
+                        vif.D_pop[0][k] = 0;
                     end
 
                     //POP
-                    if(vif.pop[k]) begin
+                    if(vif.pop[0][k]) begin
                         if (q.size() != 0) begin
                             q.pop_back;
                         end
