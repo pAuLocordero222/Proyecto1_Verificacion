@@ -9,7 +9,6 @@ class monitor #(parameter pckg_size, num_msg, drvrs, bits);
     $display("t=%0d Monitor correctamente inicializado", $time);
 
     for ( int j=0; j < drvrs; j++)begin
-        vif.push[0][j]=0;
       	
         fork
           automatic int i=j;
