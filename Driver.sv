@@ -27,8 +27,10 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
         fifo[i].vif=vif;//se conecta la interfaz de cada fifo con la interfaz del DUT
         vif.pndng[0][i]=1'b0;
         vif.push[0][1]=1'b0;
+        $display("");
         $display("------Driver-----");
         $display("Fifo %0d creada", i);
+        $display("");
       end      
 
       for ( int p=0; p < drvrs; p++)
@@ -59,7 +61,7 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
                     fifo[j].q.push_back(msg_2_DUT[j].message);// se hace un push de la palabra a la fifo simulada
                     $display("------Driver-----");
                     $display("Mensaje ingresado en la fifo de entrada %0d", j);
-                    
+
                   end
                   
                 end
