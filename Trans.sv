@@ -53,6 +53,7 @@ class Fifo #(parameter pckg_size, drvrs, bits);
                             q.pop_front;
                         end
                     end
+                #1
             end
     endtask
 endclass
