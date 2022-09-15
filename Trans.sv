@@ -12,26 +12,21 @@ class trans_bus #(parameter pckg_size, drvrs);
     constraint const_retardo {retardo < max_retardo; retardo > 0;}
     constraint const_emisor {id_emisor < drvrs; id_emisor >= 0;}
     constraint const_dest {id_dest < drvrs; id_dest >= 0; id_dest != id_emisor;}
-  
 endclass
 
 class Fifo #(parameter pckg_size, drvrs, bits);
 
     bit [pckg_size-1:0]q[$]={};
     int k;
-    int cont=0; 
     virtual bus_if #(.bits(bits), .drvrs(drvrs), .pckg_size(pckg_size)) vif;
     
-
     task run();
             //Funcionamiento de la FIFO'
             vif.pndng[0][k]= 1'b0;
             forever begin
                                
                 @(posedge vif.clk)
-                vif.D_pop[0][k]= q[0];
-                
-             
+                vif.D_pop[0][k]= q[0];             
                    if(q.size()!=0) begin
                         vif.pndng[0][k]= 1'b1;
 
@@ -43,12 +38,11 @@ class Fifo #(parameter pckg_size, drvrs, bits);
 
                     //POP
                     if(vif.pop[0][k]) begin
-                        //$display("si se lee esto el pop deberia estar en 1:", vif.pop[0][k]);
                         if (q.size() != 0) begin
                             q.pop_front;
                         end
                     end
-                cont++;
+
             end
     endtask
 endclass
