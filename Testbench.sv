@@ -16,9 +16,9 @@ module tb;
 
 
   parameter pckg_size = 16;
-  parameter drvrs = 4;
+  parameter drvrs = 8;
   parameter bits = 1;
-  parameter num_msg = 16;
+  parameter num_msg = 32;
 
   tipo_test test;
   reg clk;
