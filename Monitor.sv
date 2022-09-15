@@ -18,12 +18,9 @@ class monitor #(parameter pckg_size, num_msg, drvrs, bits);
               @(posedge bus_interface.push[0][i])
                 $display("push en la salida: ", bus_interface.push[0][i]);
                 //falta la parte donde el dato entra a la fifo simulada y tambien sale de esta
-<<<<<<< Updated upstream
                 msg_2_Monitor[i].message<=bus_interface.D_push[0][i]; 
-=======
                 msg_2_Monitor[i].message<=vif.D_push[0][i]; 
                 mntr_2_chckr_mbx.put(msg_2_Monitor[i]);
->>>>>>> Stashed changes
               	$display(""); 
               $display("------Monitor-----"); 
                 $display("Se obtuvo el mensaje: %b",msg_2_Monitor[i].message);
