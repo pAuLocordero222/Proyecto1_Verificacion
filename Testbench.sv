@@ -51,7 +51,7 @@ module tb;
     //Test1: envio de datos aleatorios desde dispositivos aleatorios hacia destinos aleatorios 
     test=test1;
     test_2_gen_mbx.put(test);
-    #5000;$finish;
+    #100;$finish;
   end
 
 
