@@ -6,6 +6,11 @@ class Envi #(parameter pckg_size, num_msg, drvrs, bits);
     age_gen #(.pckg_size(pckg_size), .num_msg(num_msg), .drvrs(drvrs)) inst_age_gen;
   	driver #(.pckg_size(pckg_size), .num_msg(num_msg), .drvrs(drvrs), .bits(bits)) inst_Driver;
   	monitor #(.pckg_size(pckg_size), .num_msg(num_msg), .drvrs(drvrs), .bits(bits)) inst_Monitor;
+<<<<<<< Updated upstream
+=======
+    checker #(.pckg_size(pckg_size), .num_msg(num_msg), .drvrs(drvrs), .bits(bits)) inst_checker;
+
+>>>>>>> Stashed changes
   
 	mailbox agnt_2_drvr_mbx;
 
@@ -25,6 +30,7 @@ class Envi #(parameter pckg_size, num_msg, drvrs, bits);
         inst_age_gen = new();
       	inst_Driver=new();
       	inst_Monitor=new();
+        inst_checker = new();
       
 
         //Conexion de las interfaces y mailboxes en el ambiente
@@ -38,6 +44,13 @@ class Envi #(parameter pckg_size, num_msg, drvrs, bits);
     task run();
       inst_Driver.vif=vif;
       inst_Monitor.vif=vif;
+<<<<<<< Updated upstream
+=======
+
+      for (int i; i <= drvrs; i++) begin
+        inst_Driver.fifo[i].vif=vif;
+      end
+>>>>>>> Stashed changes
       
         fork
             inst_age_gen.run();
