@@ -32,7 +32,7 @@ class Fifo #(parameter pckg_size, drvrs, bits);
             forever begin
                 @(posedge vif.clk)
                     if(q.size()>0) begin
-                        vif.D_pop[0][k] = q[-1];
+                        vif.D_pop[0][k] = q[0];
                         vif.pndng[0][k] = 1;
                     end
                     //Fifo vacia
@@ -44,7 +44,7 @@ class Fifo #(parameter pckg_size, drvrs, bits);
                     //POP
                     if(vif.pop[0][k]) begin
                         if (q.size() != 0) begin
-                            q.pop_back;
+                            q.pop_front;
                         end
                     end
             end
