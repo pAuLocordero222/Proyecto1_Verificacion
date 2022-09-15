@@ -17,19 +17,19 @@ endclass
 
 class Fifo #(parameter pckg_size, drvrs, bits);
 
-    bit [pckg_size-1:0]q[$];
+    bit [pckg_size-1:0]q[$]={};
     int k;
-    int cont=0;  
 
     virtual bus_if #(.bits(bits), .drvrs(drvrs), .pckg_size(pckg_size)) vif;
 
     task run();
-            $display("mmmm contenido en fifo %0d es de %0d",k, q.size());
-                //Funcionamiento de la FIFO'
-              
-            forever begin    
-                           
+            //Funcionamiento de la FIFO'
+            $display("numero de elementos en fifo %0d es de %0d",k, q.size());
+            int cont=0;    
+            forever begin               
                 @(posedge vif.clk)
+
+
                     /*$display("");
                     $display("D_pop en %0d es:%0b",k, vif.D_pop[0][k]);
                     $display("pndng %0d esta en %0d",k, vif.pndng[0][k]);
@@ -38,10 +38,11 @@ class Fifo #(parameter pckg_size, drvrs, bits);
                    if(q.size()>0) begin
                         vif.D_pop[0][k]= q[0];
                         vif.pndng[0][k]= 1'b1;
+                        $display(cont);
                         $display("contenido en fifo %0d es de %0d",k, q.size());
                         $display("contenido en la primera posicion de la fifo %0d es %0b",k, q[0]);
                         $display("D_pop en %0d es:%0b",k, vif.D_pop[0][k]);
-                        $display("pndng %0d esta en %0d",k, vif.pndng[0][k]);*/
+                        $display("pndng %0d esta en %0d",k, vif.pndng[0][k]);
                        
                     end
                     //Fifo vacia
@@ -56,7 +57,7 @@ class Fifo #(parameter pckg_size, drvrs, bits);
                             q.pop_front;
                         end
                     end
-                cont=cont+1;
+                cont++;
             end
     endtask
 endclass
