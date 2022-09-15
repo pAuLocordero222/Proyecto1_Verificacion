@@ -10,9 +10,9 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
 
     function new();
     
-    for ( int p=0; p < drvrs; p++)begin
+    for ( int p=0; p < drvrs; p++)begin//se construyen las fifos
       fifo[p]=new();
-      fifo[p].k = p;
+      fifo[p].k = p;//se pasa este valor para saber que numero de dispositivo controla cada fifo
     end
     endfunction
       
@@ -24,8 +24,9 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
       vif.reset= 1;
 
       for (int i=0; i < drvrs; i++) begin
-        fifo[i].vif=vif;
-        vif.pndng[0][i]=0;
+        fifo[i].vif=vif;//se conecta la interfaz de cada fifo con la interfaz del DUT
+        vif.pndng[0][i]=1'b0;
+        vif.push[0][1]=1'b0;
         $display("Fifo [%d] creada", i);
       end      
 
@@ -34,27 +35,27 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
 
           fork
           automatic int w=p;
-          fifo[w].run();  
+          fifo[w].run();  //se corre el task run de cada fifo
           join_none
 
 
           fork 
 
             automatic int j=p;
-            msg_2_DUT[j]=new();
+            msg_2_DUT[j]=new();//se crea item de transferencia para obtener el mensaje del mailbox
 
             
             //Actualiza los valors de la fifo
             forever begin
               @(posedge vif.clk)
-              vif.reset= 1'b0;
+              vif.reset= 1'b0;//se pone el reset en 0 
 
-                if(agnt_2_drvr_mbx.num()>0) begin
-                  agnt_2_drvr_mbx.peek(msg_2_DUT[j]);
+                if(agnt_2_drvr_mbx.num()>0) begin//se revisa si el mailbox tiene algun mensaje 
+                  agnt_2_drvr_mbx.peek(msg_2_DUT[j]);//se asigna la primer instruccion del mailbox al objeto de transferencia para poder comparar
 
-                  if(msg_2_DUT[j].id_emisor==j) begin
-                    agnt_2_drvr_mbx.get(msg_2_DUT[j]);
-                    fifo[j].q.push_back(msg_2_DUT[j].message);
+                  if(msg_2_DUT[j].id_emisor==j) begin//se revisa si la direccion de emisor que indica la instruccion coincide con el disipositivo en el cual se esta iterando
+                    agnt_2_drvr_mbx.get(msg_2_DUT[j]);// si se cumple la condicion saca la instruccion del mailbox
+                    fifo[j].q.push_back(msg_2_DUT[j].message);// se hace un push de la palabra a la fifo simulada
                   end
                   
                 end
