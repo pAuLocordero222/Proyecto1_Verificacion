@@ -29,9 +29,9 @@ class Fifo #(parameter pckg_size, drvrs, bits);
                 @(posedge vif.clk)
                 vif.D_pop[0][k]= q[0];
                                
-                #1   if(q.size()>0) begin
+                   if(q.size()>0) begin
     
-                        vif.pndng[0][k]= 1'b1;
+                        #5 vif.pndng[0][k]= 1'b1;
                         
                        /* $display("contenido en fifo %0d es de %0d",k, q.size());
                         $display("contenido en la primera posicion de la fifo %0d es %0b",k, q[0]);
