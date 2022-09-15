@@ -10,7 +10,7 @@ class checker #(parameter pckg_size, num_msg, drvrs, bits);
         msg_agnt_chckr = new;
         msg_mntr_chckr = new;
 
-        forever begin
+        for (int i, i <= num_msg, i++) begin
             mntr_2_chckr_mbx.get(msg_mntr_chckr); //Se obtiene el dato desde el monitor
             agnt_2_chckr_mbx.get(msg_agnt_chckr); //Se obtiene el dato desde el agente
             $display("Se recibieron los mensajes desde el agente y desde el monitor");
