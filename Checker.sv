@@ -3,8 +3,8 @@ class checker #(parameter pckg_size, num_msg, drvrs, bits);
     mailbox mntr_2_chckr_mbx;
     mailbox agnt_2_chckr_mbx;
 
-    trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) msg_agnt_chckr[pckg_size-1:0];
-    trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) msg_mntr_chckr[pckg_size-1:0];
+    trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) msg_agnt_chckr;
+    trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) msg_mntr_chckr;
     
     task run();
         $display("[%g] El checker fue inicializado.", $time);
