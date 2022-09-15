@@ -43,7 +43,7 @@ module tb;
   initial begin
     {clk, bus_interface.reset} <= 0;
     inst_envi = new();
-    inst_envi.bus_interface = bus_interface;
+    inst_envi.vif = bus_interface;
     inst_envi.run();
 
           
