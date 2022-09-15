@@ -22,8 +22,8 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
     
       $display("Driver correctamente inicializado");
 
-      #1
-      for (int i; i <= drvrs; i++) begin
+
+      for (int i=0; i <= drvrs; i++) begin
         fifo[i].vif=vif;
       end      
 
