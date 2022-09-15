@@ -11,6 +11,13 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
     Fifo #(.bits(bits), .drvrs(drvrs), .pckg_size(pckg_size) ) fifo[drvrs-1:0];
 
 
+    function new();
+    for ( int p=0; p < drvrs; p++)begin
+      fifo[p]=new();
+      fifo[p].k = p;
+    end
+    endfunction
+      
 
     task run();
       //$display("Mensaje en driver:", msg_2_DUT.payload);//se obtiene el mensaje que se envio desde el agente
@@ -21,12 +28,14 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
       for ( int p=0; p < drvrs; p++)
         begin//se recorren con el numero de dispositivos
 
+          fork
+          automatic int i=p;
+          fifo[i].run();  
+          join_none
 
-          fifo[p]=new();
-          fifo[p].k = p;
-          fifo[p].run();  
 
           fork 
+
             automatic int j=p;
             msg_2_DUT[j]=new();
 
