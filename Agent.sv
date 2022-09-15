@@ -35,6 +35,10 @@ class age_gen #(parameter pckg_size, num_msg, drvrs);
                       
                     end
                 end
+
+                                            
+            test2:
+                begin
                     for (int i = 0; i < drvrs; i++) begin
                         trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) msg_2_drvr;
                         msg_2_drvr = new;
@@ -51,11 +55,7 @@ class age_gen #(parameter pckg_size, num_msg, drvrs);
                       	$display("emisor=%d",msg_2_drvr.id_emisor);
                         $display("destino=",msg_2_drvr.id_dest);
                       	$display("");
-                      
-                                            
-            test2:
-                begin
-
+                    end
                 end
 
 
