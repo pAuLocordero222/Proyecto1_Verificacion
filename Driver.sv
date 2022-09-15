@@ -29,7 +29,7 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
         vif.push[0][1]=1'b0;
         $display("");
         $display("------Driver-----");
-        $display("t=$0d Fifo %0d creada",$time, i);
+        $display("t=$dns Fifo %0d creada",$time, i);
         $display("");
       end      
 
@@ -61,7 +61,7 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
                     fifo[j].q.push_back(msg_2_DUT[j].message);// se hace un push de la palabra a la fifo simulada
                     $display("");
                     $display("------Driver-----");
-                    $display("t=%0d Mensaje ingresado en la fifo de entrada %0d", $time, j);
+                    $display("t=%dns Mensaje ingresado en la fifo de entrada %0d", $time, j);
                     $display("");
 
                   end
