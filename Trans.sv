@@ -40,7 +40,7 @@ class Fifo #(parameter pckg_size, drvrs, bits);
 
                     //POP
                     if(vif.pop[0][k]) begin
-                        $display("si se lee esto el pop deberia estar en 1:", vif.pop[0][k]);
+                        //$display("si se lee esto el pop deberia estar en 1:", vif.pop[0][k]);
                         if (q.size() != 0) begin
                             q.pop_front;
                         end
