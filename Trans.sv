@@ -35,8 +35,10 @@ class Fifo #(parameter pckg_size, drvrs, bits);
                 $display("Esto esta pasando en la fifo ", k);
                     vif.D_pop[0][k] = q[0];                
                     if(q.size()>0) begin
- 
+                        
                         vif.pndng[0][k] = 1;
+                        $display("si se lee esto el pending deberia estar en 1", vif.pndng[0][k]);
+
                     end
                     //Fifo vacia
                     else begin
