@@ -21,7 +21,6 @@ class Fifo #(parameter pckg_size, drvrs, bits);
     int k;
     int cont=0; 
     virtual bus_if #(.bits(bits), .drvrs(drvrs), .pckg_size(pckg_size)) vif;
-    vif.D_pop[0][k]= q[0];
 
     task run();
             //Funcionamiento de la FIFO'
@@ -30,18 +29,11 @@ class Fifo #(parameter pckg_size, drvrs, bits);
             forever begin
                                
                 @(posedge vif.clk)
-                
-                    /*$display("");
-                    $display("D_pop en %0d es:%0b",k, vif.D_pop[0][k]);
-                    $display("pndng %0d esta en %0d",k, vif.pndng[0][k]);
-                    $display("push %0d esta en %0d",k, vif.push[0][k]);
-                    $display("");*/              
+                vif.D_pop[0][k]= q[0];
+                         
                    if(q.size()!=0) begin
                         vif.pndng[0][k]= 1'b1;
-                        /*$display("contenido en fifo %0d es de %0d",k, q.size());
-                        $display("contenido en la primera posicion de la fifo %0d es %0b",k, q[0]);
-                        $display("D_pop en %0d es:%0b",k, vif.D_pop[0][k]);
-                        $display("pndng %0d esta en %0d",k, vif.pndng[0][k]);*/
+
                     end
                     //Fifo vacia
                     else begin
@@ -50,7 +42,6 @@ class Fifo #(parameter pckg_size, drvrs, bits);
 
                     //POP
                     if(vif.pop[0][k]) begin
-                        //$display("si se lee esto el pop deberia estar en 1:", vif.pop[0][k]);
                         if (q.size() != 0) begin
                             q.pop_front;
                         end
