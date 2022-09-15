@@ -8,8 +8,6 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
     
     Fifo #(.bits(bits), .drvrs(drvrs), .pckg_size(pckg_size) ) fifo[drvrs-1:0];
 
-  vif.reset=0
-vif.reset=0
     function new();
     
     for ( int p=0; p < drvrs; p++)begin
