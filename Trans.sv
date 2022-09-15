@@ -38,7 +38,7 @@ class Fifo #(parameter pckg_size, drvrs, bits);
                         
                         vif.pndng[0][k] = 1'b1;
                         $display("si se lee esto el pending deberia estar en 1:", vif.pndng[0][k]);
-                        $display("Dato actual en el D_pop: %b ", vif.D_pop[0][k]);
+                        $display("Dato actual de la fifo: %d en el D_pop: %b ", vif.D_pop[0][k]);
 
                     end
                     //Fifo vacia
