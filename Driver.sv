@@ -18,10 +18,13 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
       
 
     task run();
-      //$display("Mensaje en driver:", msg_2_DUT.payload);//se obtiene el mensaje que se envio desde el agente
+    
       $display("Driver correctamente inicializado");
-      $display("Mailbox: ",agnt_2_drvr_mbx.num());
 
+      
+      for (int i; i <= drvrs; i++) begin
+        inst_Driver.fifo[i].vif=vif;
+      end      
 
       for ( int p=0; p < drvrs; p++)
         begin//se recorren con el numero de dispositivos
