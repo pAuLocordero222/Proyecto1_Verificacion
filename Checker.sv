@@ -17,8 +17,8 @@ class checker #(parameter pckg_size, num_msg, drvrs, bits);
             $display("---------------------------");
             $display("Checker");
             $display("Se recibieron los mensajes desde el agente y desde el monitor");
-            $display("Mensaje del agente: %b", msg_agnt_chckr);
-            $display("Mensaje del monitor: %b", msg_mntr_chckr);
+            $display("Mensaje del agente: %b", msg_agnt_chckr.message);
+            $display("Mensaje del monitor: %b", msg_mntr_chckr.message);
             
             if (msg_mntr_chckr.message == msg_agnt_chckr.message) begin
                 $display("La transaccion fue realizada correctamente");
