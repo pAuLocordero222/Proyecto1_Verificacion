@@ -14,14 +14,18 @@ class checker #(parameter pckg_size, num_msg, drvrs, bits);
         for (int i = 0; i < num_msg; i++) begin
             mntr_2_chckr_mbx.get(msg_mntr_chckr); //Se obtiene el dato desde el monitor
             agnt_2_chckr_mbx.get(msg_agnt_chckr); //Se obtiene el dato desde el agente
+            $display("---------------------------")
+            $display("Checker")
             $display("Se recibieron los mensajes desde el agente y desde el monitor");
             
             if (msg_mntr_chckr.message == msg_agnt_chckr.message) begin
                 $display("La transaccion fue realizada correctamente");
+                $display("---------------------------")
             end
 
             else begin
                 $display("ERROR: no se recibio el mensaje %d correctamente", i);
+                $display("---------------------------")
             end
 
         end
