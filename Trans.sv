@@ -15,32 +15,44 @@ class trans_bus #(parameter pckg_size, drvrs);
   
 endclass
 
-class Fifo #(parameter pckg_size);
-    bit [pckg_size-1:0]D_pop;
-    bit pop;
+class Fifo #(parameter pckg_size, drvrs, bits);
+
     bit [pckg_size-1:0]q[$];
-    bit [pckg_size-1:0]pndng;
+    int k;
+
+    virtual bus_if #(.bits(bits), .drvrs(drvrs), .pckg_size(pckg_size)) vif;
 
     task run();
                 //Funcionamiento de la FIFO
             forever begin
-                //$display("Esto esta pasando en el task de la");
-                if(q.size()>0) begin
-                    D_pop = q[-1];
-                    pndng = 1;
-                end
+                
+                @(posedge vif.clk)
+                                 
+                    if(q.size()>0) begin
 
-                else begin
-                    pndng = 0;
-                    D_pop = 0;
-                end
 
-                //POP
-                if(pop) begin
-                    if (q.size() != 0) begin
-                        q.pop_back;
+                        vif.D_pop[0][k] <= q[0];
+                        vif.pndng[0][k] <= 1'b1;
+                        vif.D_pop[0][k] <= q[0];
+                        $display("contenido en fifo %d es de %d",k, q.size());
+                        $display("contenido en la primera posicion de la fifo %d es %d",k, q[0]);
+                        $display("pndng %d esta en %d",k, vif.pndng[0][k]);
+                        $display("D_pop en %d es:%d",k, vif.D_pop[0][k]);
+
+
                     end
-                end
+                    //Fifo vacia
+                    else begin
+                        vif.pndng[0][k] <= 1'b0;
+                    end
+
+                    //POP
+                    if(vif.pop[0][k]) begin
+                        //$display("si se lee esto el pop deberia estar en 1:", vif.pop[0][k]);
+                        if (q.size() != 0) begin
+                            q.pop_front;
+                        end
+                    end
             end
     endtask
 endclass
