@@ -15,7 +15,7 @@ class checker #(parameter pckg_size, num_msg, drvrs, bits);
             agnt_2_chckr_mbx.get(msg_agnt_chckr); //Se obtiene el dato desde el agente
             $display("Se recibieron los mensajes desde el agente y desde el monitor");
             
-            if (msg_mntr_chckr.messsage == msg_agnt_chckr.message) begin
+            if (msg_mntr_chckr.message == msg_agnt_chckr.message) begin
                 $display("La transaccion fue realizada correctamente");
             end
 
