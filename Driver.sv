@@ -25,8 +25,6 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
 
       for (int i=0; i < drvrs; i++) begin
         fifo[i].vif=vif;//se conecta la interfaz de cada fifo con la interfaz del DUT
-        vif.pndng[0][i]=0;
-        vif.push[0][1]=0;
         $display("");
         $display("------Driver-----");
         $display("t=%0dns Fifo %0d creada", $time, i);
