@@ -1,15 +1,22 @@
-
 class driver #(parameter pckg_size, num_msg, drvrs, bits);
+  	
+	  mailbox agnt_2_drvr_mbx;
   
-  mailbox agnt_2_drvr_mbx;
+    virtual bus_if #(.bits(bits), .drvrs(drvrs), .pckg_size(pckg_size)) vif; //instancia para la interface
+    trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) msg_2_DUT[drvrs-1:0]; //instancia de la clase de transferencia para guardar el mensaje que se va a enciar al DUT
+    
+    Fifo #(.bits(bits), .drvrs(drvrs), .pckg_size(pckg_size) ) fifo[drvrs-1:0];
 
-  virtual bus_if #(.bits(bits), .drvrs(drvrs), .pckg_size(pckg_size)) vif; //instancia para la interface
-  trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) msg_2_DUT[drvrs-1:0]; //instancia de la clase de transferencia para guardar el mensaje que se va a enciar al DUT
-  
-  Fifo #(.bits(bits), .drvrs(drvrs), .pckg_size(pckg_size) ) fifo[drvrs-1:0];
+    function new();
+    
+    for ( int p=0; p < drvrs; p++)begin//se construyen las fifos
+      fifo[p]=new();
+      fifo[p].k = p;//se pasa este valor para saber que numero de dispositivo controla cada fifo
+    end
+    endfunction
+      
 
-
-  task run();
+    task run();
     
       $display("Driver correctamente inicializado");
       @(posedge vif.clk);
@@ -21,7 +28,7 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
         vif.push[0][1]=1'b0;
         $display("");
         $display("------Driver-----");
-        $display("t=$0dns Fifo %0d creada",$time, i);
+        $display("t=$0dns Fifo numero %d creada", $time, i);
         $display("");
       end      
 
