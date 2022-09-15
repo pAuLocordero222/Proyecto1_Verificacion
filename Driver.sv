@@ -1,63 +1,75 @@
 
 class driver #(parameter pckg_size, num_msg, drvrs, bits);
   
-  bit dato[pckg_size-1:0];
   mailbox agnt_2_drvr_mbx;
-  int number;
 
   virtual bus_if #(.bits(bits), .drvrs(drvrs), .pckg_size(pckg_size)) vif; //instancia para la interface
   trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) msg_2_DUT[drvrs-1:0]; //instancia de la clase de transferencia para guardar el mensaje que se va a enciar al DUT
   
-  Fifo #(.pckg_size(pckg_size) ) fifo[drvrs-1:0];
+  Fifo #(.bits(bits), .drvrs(drvrs), .pckg_size(pckg_size) ) fifo[drvrs-1:0];
 
 
   task run();
+    
+      $display("Driver correctamente inicializado");
+      @(posedge vif.clk);
+      vif.reset= 1;
 
-    $display("Esto esta pasando");
-    //$display("Mensaje en driver:", msg_2_DUT.payload);//se obtiene el mensaje que se envio desde el agente
-    $display("Driver correctamente inicializado");
-    $display("Mailbox: ",agnt_2_drvr_mbx.num());
+      for (int i=0; i < drvrs; i++) begin
+        fifo[i].vif=vif;//se conecta la interfaz de cada fifo con la interfaz del DUT
+        vif.pndng[0][i]=1'b0;
+        vif.push[0][1]=1'b0;
+        $display("");
+        $display("------Driver-----");
+        $display("t=$0dns Fifo %0d creada",$time, i);
+        $display("");
+      end      
+
+      for ( int p=0; p < drvrs; p++)
+        begin//se recorren con el numero de dispositivos
+
+          fork
+          automatic int w=p;
+          fifo[w].run();  //se corre el task run de cada fifo
+          join_none
 
 
-    for ( int p=0; p < drvrs; p++)
-      begin//se recorren con el numero de dispositivos
-        fifo[p]=new();
-        fork 
-          automatic int j=p;
-          
-          msg_2_DUT[j]=new();
+          fork 
 
-          
-          //Actualiza los valors de la fifo
-          forever begin
-            @(posedge vif.clk)
-              if(agnt_2_drvr_mbx.num()>0) begin
-                agnt_2_drvr_mbx.peek(msg_2_DUT[j]);
+            automatic int j=p;
+            msg_2_DUT[j]=new();//se crea item de transferencia para obtener el mensaje del mailbox
 
-                if(msg_2_DUT[j].id_emisor==j) begin
-                  agnt_2_drvr_mbx.get(msg_2_DUT[j]);
-                  fifo[j].q.push_front(msg_2_DUT[j].message);
+            
+            //Actualiza los valors de la fifo
+            forever begin
+              @(posedge vif.clk)
+              vif.reset= 1'b0;//se pone el reset en 0 
+
+                if(agnt_2_drvr_mbx.num()>0) begin//se revisa si el mailbox tiene algun mensaje 
+                  agnt_2_drvr_mbx.peek(msg_2_DUT[j]);//se asigna la primer instruccion del mailbox al objeto de transferencia para poder comparar
+
+                  if(msg_2_DUT[j].id_emisor==j) begin//se revisa si la direccion de emisor que indica la instruccion coincide con el disipositivo en el cual se esta iterando
+                    agnt_2_drvr_mbx.get(msg_2_DUT[j]);// si se cumple la condicion saca la instruccion del mailbox
+                    fifo[j].q.push_back(msg_2_DUT[j].message);// se hace un push de la palabra a la fifo simulada
+                    $display("");
+                    $display("------Driver-----");
+                    $display("t=%0dns Mensaje ingresado en la fifo de entrada %0d", $time, j);
+                    $display("");
+
+                  end
+                  
                 end
-                
-              end
-          end
+            //$display("Dato actual de la fifo: %d en el D_pop: %b ", j,vif.D_pop[0][j]);
+            //$display("Push del dispositivo %0d %0d: ",j,vif.push[0][j]);
+            //$display("pndng del dispositivo %0d %0d: ",j,vif.pndng[0][j]);
+            //$display("Reset: %d",vif.reset);
+
+            end
 
 
-        join_none
+          join_none
 
-    end
-    #1000;
-    $display("Queue 0: ",fifo[0].q);
-    $display("Queue 0 pndng: ",fifo[0].pndng);
-
-    $display("Queue 1: ",fifo[1].q);
-    $display("Queue 1 pndng: ",fifo[1].pndng);
-
-    $display("Queue 2: ",fifo[2].q);
-    $display("Queue 2 pndng: ",fifo[2].pndng);
-
-    $display("Queue 3: ",fifo[3].q);
-    $display("Queue 3 pndng: ",fifo[3].pndng);
-  endtask    
+      end
+    endtask    
 //a
 endclass
