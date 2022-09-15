@@ -34,17 +34,17 @@ class Fifo #(parameter pckg_size, drvrs, bits);
             forever begin
                 @(posedge vif.clk)
                     if(q.size()>0) begin
-                        vif[k].D_pop = q[-1];
-                        vif[k].pndng = 1;
+                        vif.D_pop[k] = q[-1];
+                        vif.pndng[k] = 1;
                     end
                     //Fifo vacia
                     else begin
-                        vif[k].pndng = 0;
-                        vif[k].D_pop = 0;
+                        vif.pndng[k] = 0;
+                        vif.D_pop[k] = 0;
                     end
 
                     //POP
-                    if(vif[k].pop) begin
+                    if(vif.pop[k]) begin
                         if (q.size() != 0) begin
                             q.pop_back;
                         end
