@@ -6,6 +6,8 @@ class checker #(parameter pckg_size, num_msg, drvrs, bits);
     mailbox agnt_2_chckr_mbx;
     mailbox chckr_2_scrbrd_mbx;
 
+    event chkr_listo;
+
     //event AgenteListo;  
     trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) msg_agnt_chckr;
     trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) msg_mntr_chckr;
@@ -22,7 +24,7 @@ class checker #(parameter pckg_size, num_msg, drvrs, bits);
         end
 
 
-        for (int i = 0; i < agnt_2_chckr_mbx.num(); i++) begin
+        for (int i = 0; i < num_msg; i++) begin
             //mntr_2_chckr_mbx.get(msg_mntr_chckr); //Se obtiene el dato desde el monitor
             agnt_2_chckr_mbx.get(msg_agnt_chckr); //Se obtiene el dato desde el agente
             $display("---------------------------");
@@ -49,6 +51,8 @@ class checker #(parameter pckg_size, num_msg, drvrs, bits);
             end*/
 
         end
+
+        -> chkr_listo;
 
 
     endtask
