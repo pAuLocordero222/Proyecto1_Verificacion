@@ -40,6 +40,10 @@ class checker #(parameter pckg_size, num_msg, drvrs, bits);
                     $display("---------------------------");
                 end
             end
+
+            if (i == num_msg) begin
+                -> chkr_listo;
+            end
             /*
             $display("La transaccion %0d fue realizada correctamente", i);
             $display("---------------------------");*/
@@ -52,7 +56,7 @@ class checker #(parameter pckg_size, num_msg, drvrs, bits);
 
         end
 
-        -> chkr_listo;
+        
 
 
     endtask
