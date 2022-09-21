@@ -12,18 +12,20 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
     trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) msg_chckr_scrbrd[drvrs-1:0];
 
     task run();
-        msg_drvr_scrbrd = new;
-        msg_chckr_scrbrd = new;
+        
         $display("[%g] El scoreboard fue inicializado.", $time);
 
         $display("Retardo promedio");
 
         for (int i = 0; i < num_msg; i++) begin
+            msg_drvr_scrbrd[i] = new;
+            
             automatic int k = i;
 
             drvr_2_scrbrd_mbx.get(msg_drvr_scrbrd[k]);
 
             for (int j = 0; j < num_msg; j++) begin
+                msg_chckr_scrbrd[j] = new;
                 automatic int p = j;
                 chckr_2_scrbrd_mbx.get(msg_chckr_scrbrd[p]);
                 if (msg_drvr_scrbrd[k]==msg_chckr_scrbrd[p]) begin
