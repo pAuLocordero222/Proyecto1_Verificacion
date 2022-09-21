@@ -38,11 +38,11 @@ class checker #(parameter pckg_size, num_msg, drvrs, bits);
             $display("La transaccion %0d fue realizada correctamente", i);
             $display("---------------------------");*/
 
-
+/*
             else begin
                 $display("ERROR: no se recibio el mensaje %d correctamente", i);
                 $display("---------------------------");
-            end
+            end*/
 
         end
 
