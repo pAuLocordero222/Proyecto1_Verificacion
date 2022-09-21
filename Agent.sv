@@ -7,6 +7,7 @@ class age_gen #(parameter pckg_size, num_msg, drvrs);
     mailbox test_2_gen_mbx;
     mailbox agnt_2_drvr_mbx;
     mailbox agnt_2_chckr_mbx;
+    //mailbox agnt_2_scrbrd_mbx;
     
 
 
@@ -24,6 +25,7 @@ class age_gen #(parameter pckg_size, num_msg, drvrs);
                       	msg_2_drvr.message={msg_2_drvr.id_dest, msg_2_drvr.payload};
                         agnt_2_drvr_mbx.put(msg_2_drvr);
                         agnt_2_chckr_mbx.put(msg_2_drvr);
+                        
                       	
                       	$display("");
                       	$display("Agente: Instruccion de Test1 creada");

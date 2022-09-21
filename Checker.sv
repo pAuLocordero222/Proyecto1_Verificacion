@@ -4,7 +4,9 @@ class checker #(parameter pckg_size, num_msg, drvrs, bits);
 
     mailbox mntr_2_chckr_mbx;
     mailbox agnt_2_chckr_mbx;
-    event AgenteListo;  
+    mailbox chckr_2_scrbrd_mbx;
+
+    //event AgenteListo;  
     trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) msg_agnt_chckr;
     trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) msg_mntr_chckr;
     
@@ -14,6 +16,7 @@ class checker #(parameter pckg_size, num_msg, drvrs, bits);
         msg_mntr_chckr = new;
         for (int i = 0; i < num_msg; i++) begin
             mntr_2_chckr_mbx.get(msg_mntr_chckr);
+            chckr_2_scrbrd_mbx.put(msg_mntr_chckr);
             q_chkr.push_back(msg_mntr_chckr.message);
         end
 

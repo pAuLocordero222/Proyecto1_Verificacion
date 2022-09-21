@@ -2,6 +2,7 @@
 class driver #(parameter pckg_size, num_msg, drvrs, bits);
   	
 	  mailbox agnt_2_drvr_mbx;
+    mailbox drvr_2_scrbrd_mbx;
   
     virtual bus_if #(.bits(bits), .drvrs(drvrs), .pckg_size(pckg_size)) vif; //instancia para la interface
     trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) msg_2_DUT[drvrs-1:0]; //instancia de la clase de transferencia para guardar el mensaje que se va a enciar al DUT
@@ -58,6 +59,8 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
 
                   if(msg_2_DUT[j].id_emisor==j) begin//se revisa si la direccion de emisor que indica la instruccion coincide con el disipositivo en el cual se esta iterando
                     agnt_2_drvr_mbx.get(msg_2_DUT[j]);// si se cumple la condicion saca la instruccion del mailbox
+                    msg_2_DUT.tiempo_envio = $time;
+                    drvr_2_scrbrd_mbx.put(msg_2_DUT[j]);
                     fifo[j].q.push_back(msg_2_DUT[j].message);// se hace un push de la palabra a la fifo simulada
                     $display("");
                     $display("------------------------Driver---------------------------");
