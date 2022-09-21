@@ -19,16 +19,14 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
 
         for (int i = 0; i < num_msg; i++) begin
             msg_drvr_scrbrd[i] = new();
-            
-            automatic int k = i;
 
-            drvr_2_scrbrd_mbx.get(msg_drvr_scrbrd[k]);
+            drvr_2_scrbrd_mbx.get(msg_drvr_scrbrd[i]);
 
             for (int j = 0; j < num_msg; j++) begin
                 msg_chckr_scrbrd[j] = new();
-                automatic int p = j;
+
                 chckr_2_scrbrd_mbx.get(msg_chckr_scrbrd[p]);
-                if (msg_drvr_scrbrd[k]==msg_chckr_scrbrd[p]) begin
+                if (msg_drvr_scrbrd[i]==msg_chckr_scrbrd[p]) begin
                     t_total = t_total + 1;//msg_chckr_scrbrd[p].tiempo_recibido; //- msg_drvr_scrbrd[k].tiempo_envio;
                 end
             end
