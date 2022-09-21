@@ -18,7 +18,7 @@ class monitor #(parameter pckg_size, num_msg, drvrs, bits);
               if (vif.push[0][i]==1)begin
                 //falta la parte donde el dato entra a la fifo simulada y tambien sale de esta
                 msg_2_Monitor[i].message=vif.D_push[0][i];
-                msg_2_Monitor[i].tieimpo_recibido = $time; 
+                msg_2_Monitor[i].tiempo_recibido = $time; 
                 mntr_2_chckr_mbx.put(msg_2_Monitor[i]);
               	$display(""); 
                 $display("------Monitor-----"); 

@@ -5,7 +5,7 @@ class trans_bus #(parameter pckg_size, drvrs);
     rand bit [pckg_size-8-1:0]payload; //dato
     rand bit [7:0]id_dest; //direccion del dispositivo destino
     int tiempo_envio;
-    int tieimpo_recibido;
+    int tiempo_recibido;
     rand int id_emisor; //direccion del dispositivo del cual se envia el mensaje
     bit[pckg_size-1:0]message=0;
     int max_retardo=25;

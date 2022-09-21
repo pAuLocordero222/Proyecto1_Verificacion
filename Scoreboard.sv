@@ -25,7 +25,7 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
             for (j = 0; j < num_msg; j++) begin
                 chckr_2_scrbrd_mbx.get(msg_chckr_scrbrd[j]);
                 if (msg_drvr_scrbrd[i]==msg_chckr_scrbrd[j]) begin
-                    t_total = t_total + (msg_chckr_scrbrd[j].tieimpo_recibido - msg_drvr_scrbrd[i].tiempo_envio);
+                    t_total = t_total + (msg_chckr_scrbrd[j].tiempo_recibido - msg_drvr_scrbrd[i].tiempo_envio);
                 end
             end
 
