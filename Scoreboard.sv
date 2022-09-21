@@ -13,11 +13,11 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
     trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) msg_drvr_scrbrd[drvrs-1:0];
     trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) msg_chckr_scrbrd[drvrs-1:0];
 
-    task run() (event chkr_listo);
+    task run();
         
         $display("[%g] El scoreboard fue inicializado.", $time);
         
-
+        @(chkr_listo);
         $display("Retardo promedio");
 
 
