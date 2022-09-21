@@ -18,11 +18,11 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
 
         $display("Retardo promedio");
 
-        for (i = 0; i < num_msg; i++) begin
+        for (int i = 0; i < num_msg; i++) begin
 
             drvr_2_scrbrd_mbx.get(msg_drvr_scrbrd[i]);
 
-            for (j = 0; j < num_msg; j++) begin
+            for (int j = 0; j < num_msg; j++) begin
                 chckr_2_scrbrd_mbx.get(msg_chckr_scrbrd[j]);
                 if (msg_drvr_scrbrd[i]==msg_chckr_scrbrd[j]) begin
                     t_total = t_total + (msg_chckr_scrbrd[j].tiempo_recibido - msg_drvr_scrbrd[i].tiempo_envio);
