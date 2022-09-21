@@ -17,6 +17,8 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
 
         $display("Retardo promedio");
 
+
+
         for (int i = 0; i < num_msg; i++) begin
             fork
                 automatic int k = i;
@@ -30,7 +32,7 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
                     msg_chckr_scrbrd[j] = new();
 
                     chckr_2_scrbrd_mbx.get(msg_chckr_scrbrd[j]);
-                    if (msg_drvr_scrbrd[k].message==msg_chckr_scrbrd[j].message) begin
+                    if (msg_drvr_scrbrd[k]==msg_chckr_scrbrd[j]) begin
                         t_total = t_total + msg_chckr_scrbrd[j].tiempo_recibido - msg_drvr_scrbrd[k].tiempo_envio;
                     end
                 end
@@ -38,6 +40,14 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
             join_none
 
         end
+/*
+        forever begin
+            if (drvr_2_scrbrd_mbx.num()!==0) begin
+                
+            end
+
+
+        end*/
 
         t_promedio = t_total / num_msg;
 

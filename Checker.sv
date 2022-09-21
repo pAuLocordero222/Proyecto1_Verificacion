@@ -21,7 +21,7 @@ class checker #(parameter pckg_size, num_msg, drvrs, bits);
         end
 
 
-        for (int i = 0; i < num_msg; i++) begin
+        for (int i = 0; i < agnt_2_chckr_mbx.num(); i++) begin
             //mntr_2_chckr_mbx.get(msg_mntr_chckr); //Se obtiene el dato desde el monitor
             agnt_2_chckr_mbx.get(msg_agnt_chckr); //Se obtiene el dato desde el agente
             $display("---------------------------");
