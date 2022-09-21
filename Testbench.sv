@@ -6,6 +6,7 @@
 `include "Driver.sv"
 `include "Monitor.sv"
 `include "Checker.sv"
+`include "Scoreboard.sv"
 `include "Environment.sv"
 
 
