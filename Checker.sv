@@ -6,7 +6,6 @@ class checker #(parameter pckg_size, num_msg, drvrs, bits);
     mailbox agnt_2_chckr_mbx;
     mailbox chckr_2_scrbrd_mbx;
 
-    event chkr_listo;
 
     //event AgenteListo;  
     trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) msg_agnt_chckr;
@@ -41,9 +40,6 @@ class checker #(parameter pckg_size, num_msg, drvrs, bits);
                 end
             end
 
-            if (i == num_msg) begin
-                -> chkr_listo;
-            end
             /*
             $display("La transaccion %0d fue realizada correctamente", i);
             $display("---------------------------");*/
