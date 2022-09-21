@@ -24,6 +24,8 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
 
                 drvr_2_scrbrd_mbx.get(msg_drvr_scrbrd[k]);
 
+                $display("fsdgdfgsdf");
+
                 for (int j = 0; j < num_msg; j++) begin
                     msg_chckr_scrbrd[j] = new();
 
