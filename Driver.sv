@@ -3,6 +3,7 @@ class driver #(parameter pckg_size, num_msg, drvrs, bits);
   	
 	  mailbox agnt_2_drvr_mbx;
     mailbox drvr_2_scrbrd_mbx;
+    mailbox drvr_2_chckr_mbx;
   
     virtual bus_if #(.bits(bits), .drvrs(drvrs), .pckg_size(pckg_size)) vif; //instancia para la interface
     trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) msg_2_DUT[drvrs-1:0]; //instancia de la clase de transferencia para guardar el mensaje que se va a enciar al DUT

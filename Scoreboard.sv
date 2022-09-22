@@ -13,6 +13,8 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
     trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) msg_drvr_scrbrd;//[drvrs-1:0];
     trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) msg_chckr_scrbrd;//[drvrs-1:0];
 
+    chkr_scrbrd #(.pckg_size(pckg_size)) ob_scrbrd;
+
     task run();
         
         $display("[%g] El scoreboard fue inicializado.", $time);
@@ -24,11 +26,16 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
 
         $display("Retardo promedio");
 
-        msg_drvr_scrbrd = new;
+        //msg_drvr_scrbrd = new;
         msg_chckr_scrbrd = new;
 
+        for (int i = 0; i < num_msg; i++) begin
+            chckr_2_scrbrd_mbx.get(ob_scrbrd);
+            $fwrite(fcsv, "%d, %d, %d, %d, %d \n", ob_scrbrd.tiempo_envio,ob_scrbrd.id_emisor,ob_scrbrd.tiempo_recibido,ob_scrbrd.id_dest,1);
+        end
 
 
+/*
         for (int i = 0; i < num_msg; i++) begin
             //fork
                 automatic int k = i;
@@ -77,7 +84,7 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
         t_promedio = t_total / num_msg;
         $display("El retardo promedio para todos los paquetes es: %d", t_promedio);*/
 
-
+*/
 
 
     endtask

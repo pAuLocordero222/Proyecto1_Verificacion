@@ -47,3 +47,12 @@ class Fifo #(parameter pckg_size, drvrs, bits);
             end
     endtask
 endclass
+
+class chkr_scrbrd #(parameter pckg_size = 16);
+    int tiempo_envio;
+    int tiempo_recibido;
+    int [pckg_size-9:0]id_emisor;
+    int [7:0]id_dest;
+    int [pckg_size-1:0]message;
+
+endclass
