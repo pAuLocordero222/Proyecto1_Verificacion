@@ -23,7 +23,7 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
         fcsv = $fopen("./resultados.csv", "w");//Se abre el archivo .csv en modo escritura
 
         //Se escribe la primera linea en el archivo .csv
-        $fwrite(fcsv,"T_envio [ns],Disp_envio,T_recibido [ns],Disp_recibido,Retraso [ns] \n");
+        $fwrite(fcsv,"Mensaje, T_envio [ns],Disp_envio,T_recibido [ns],Disp_recibido,Retraso [ns] \n");
         
 
 
@@ -34,12 +34,8 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
 
             drvr_2_scrbrd_mbx.get(array_drvr[i]);//Se guardan los datos provenientes del mailbox en el arreglo
             chckr_2_scrbrd_mbx.get(array_chckr[i]);//Se guardan los datos provenientes del mailbox en el arreglo
-            $display("DRVR: %0h", array_drvr[i].message);
-            $display("CHCKR: %0h", array_chckr[i].message);
 
         end
-
-        $display("Tamaño %0d", $size(array_chckr));
 
         //Ciclo para comparar los datos de ambos arreglos
         for (int i = 0; i < num_msg; i++) begin
@@ -56,7 +52,9 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
         t_promedio = t_total / num_msg;//Se calcula el retraso promedio
         $display("---------------------------");
         $display("Scoreboard");
-        $display("El retardo promedio es %0d ns:", t_promedio);//Se muestra el retraso promedio
+        $display("El retardo promedio es: %0d ns:", t_promedio);//Se muestra el retraso promedio
+
+        $display("El ancho de banda es: %0d bits/s", (pckg_size*num_msg)/t_promedio);
 
 
 
