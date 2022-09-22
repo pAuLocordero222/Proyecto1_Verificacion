@@ -27,7 +27,7 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
 
 
         for (int i = 0; i < num_msg; i++) begin
-            fork
+            //fork
                 automatic int k = i;
                 msg_drvr_scrbrd[k] = new();
 
@@ -46,7 +46,7 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
                     end
                 end
 
-            join_none
+            //join_none
 
         end
 /*
