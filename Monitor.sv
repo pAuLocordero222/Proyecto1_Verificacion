@@ -4,7 +4,6 @@ class monitor #(parameter pckg_size, num_msg, drvrs, bits);
 
 
   trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) msg_2_Monitor[drvrs-1:0];
-
   virtual bus_if #(.bits(bits), .drvrs(drvrs), .pckg_size(pckg_size)) vif;
       
   task run();

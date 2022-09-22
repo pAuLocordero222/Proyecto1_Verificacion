@@ -1,5 +1,3 @@
-
-
 class Envi #(parameter pckg_size, num_msg, drvrs, bits);
     //Se instancian los distintos modulos del ambiente
   
@@ -15,7 +13,6 @@ class Envi #(parameter pckg_size, num_msg, drvrs, bits);
     mailbox mntr_2_chckr_mbx;
     mailbox chckr_2_scrbrd_mbx;
     mailbox drvr_2_scrbrd_mbx;
-    mailbox drvr_2_chckr_mbx;
 
 
     virtual bus_if #(.bits(bits), .drvrs(drvrs), .pckg_size(pckg_size)) vif;
@@ -31,7 +28,6 @@ class Envi #(parameter pckg_size, num_msg, drvrs, bits);
         mntr_2_chckr_mbx = new();
         chckr_2_scrbrd_mbx = new();
         drvr_2_scrbrd_mbx = new();
-        drvr_2_chckr_mbx = new();
       
         //Instanciacion de los componentes del ambiente
         inst_age_gen = new();
@@ -53,8 +49,6 @@ class Envi #(parameter pckg_size, num_msg, drvrs, bits);
         inst_checker.chckr_2_scrbrd_mbx = chckr_2_scrbrd_mbx;
         inst_Driver.drvr_2_scrbrd_mbx = drvr_2_scrbrd_mbx;
         inst_scoreboard.drvr_2_scrbrd_mbx = drvr_2_scrbrd_mbx;
-        inst_Driver.drvr_2_chckr_mbx = drvr_2_chckr_mbx;
-        inst_checker.drvr_2_chckr_mbx = drvr_2_chckr_mbx;
       
       
 
@@ -72,7 +66,6 @@ class Envi #(parameter pckg_size, num_msg, drvrs, bits);
             inst_age_gen.run();
           	inst_Driver.run();
           	inst_Monitor.run();
-            #10000;
             inst_checker.run();
             #10000;
             inst_scoreboard.run();
@@ -84,4 +77,3 @@ class Envi #(parameter pckg_size, num_msg, drvrs, bits);
     endtask
     
 endclass
-
