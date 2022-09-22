@@ -72,6 +72,7 @@ class Envi #(parameter pckg_size, num_msg, drvrs, bits);
             inst_age_gen.run();
           	inst_Driver.run();
           	inst_Monitor.run();
+            #10000;
             inst_checker.run();
             #10000;
             inst_scoreboard.run();
