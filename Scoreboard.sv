@@ -12,6 +12,8 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
 
     trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) msg_drvr_scrbrd;//[drvrs-1:0];
     trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) msg_chckr_scrbrd;//[drvrs-1:0];
+    trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) [pckg_size-1:0]q_chkr[$]={};
+    trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) [pckg_size-1:0]q_drvr[$]={};
 
     task run();
         
@@ -26,10 +28,31 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
 
         msg_drvr_scrbrd = new;
         msg_chckr_scrbrd = new;
+        q_chkr = new;
+        q_drvr = new;
+
+        for (int i = 0; i < num_msg, i++) begin
+            chckr_2_scrbrd_mbx.get(msg_chckr_scrbrd);
+            drvr_2_scrbrd_mbx.get(msg_drvr_scrbrd);
+            q_chkr.push_back(msg_chckr_scrbrd);
+            q_drvr.push_back(msg_drvr_scrbrd);
+        end
+
+        for (int i = 0; i < num_msg, i++) begin
+
+            for (int j = 0; j < num_msg, j++) begin
+                
+                if (q_chkr[i].message==q_drvr[j].message) begin
+                    $display("4546464654");
+                end
+
+            end
+
+        end
 
 
 
-        for (int i = 0; i < num_msg; i++) begin
+        /*for (int i = 0; i < num_msg; i++) begin
             //fork
                 automatic int k = i;
                 //*msg_drvr_scrbrd[k] = new();
@@ -62,7 +85,7 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
 
             //join_none
 
-        end
+        end*/
 /*
         forever begin
             if (drvr_2_scrbrd_mbx.num()!==0) begin
