@@ -44,10 +44,12 @@ class checker #(parameter pckg_size, num_msg, drvrs, bits);
                     $display("---------------------------");
                     drvr_2_chckr_mbx.get(msg_drvr_chckr);
                     ob_scrbrd.tiempo_envio = msg_drvr_chckr.tiempo_envio;
+                    $display("%0d te", ob_scrbrd.tiempo_envio);
                     ob_scrbrd.tiempo_recibido = msg_mntr_chckr.tiempo_recibido;
-                    ob_scrbrd.id_emisor = msg_drvr_chckr.id_emisor;
-                    ob_scrbrd.id_dest = msg_agnt_scrbrd.id_dest;
-                    ob_scrbrd.message = msg_agnt_chckr.message;
+                    $display("%0d tr", ob_scrbrd.tiempo_recibido);
+                    //ob_scrbrd.id_emisor = msg_drvr_chckr.id_emisor;
+                    //ob_scrbrd.id_dest = msg_agnt_scrbrd.id_dest;
+                    //ob_scrbrd.message = msg_agnt_chckr.message;
                     chckr_2_scrbrd_mbx.put(ob_scrbrd);
                 end
             end
