@@ -7,7 +7,7 @@ class age_gen #(parameter pckg_size, num_msg, drvrs);
     mailbox test_2_gen_mbx;
     mailbox agnt_2_drvr_mbx;
     mailbox agnt_2_chckr_mbx;
-    //mailbox agnt_2_scrbrd_mbx;
+
     
 
 
