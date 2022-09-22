@@ -31,7 +31,7 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
 
             array_chckr[i] = new();//Se inicializa
             array_drvr[i] = new();//Se inicializa
-            #100;
+            #200;
             drvr_2_scrbrd_mbx.get(array_drvr[i]);//Se guardan los datos provenientes del mailbox en el arreglo
             chckr_2_scrbrd_mbx.get(array_chckr[i]);//Se guardan los datos provenientes del mailbox en el arreglo
 
