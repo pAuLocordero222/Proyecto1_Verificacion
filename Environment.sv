@@ -69,6 +69,7 @@ class Envi #(parameter pckg_size, num_msg, drvrs, bits);
           	inst_Driver.run();
           	inst_Monitor.run();
             inst_checker.run();
+            #10000
             inst_scoreboard.run();
 
         join_none
