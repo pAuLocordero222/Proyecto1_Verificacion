@@ -42,7 +42,7 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
                 $fwrite(fcsv, "%d, %d, %d, %d, %d \n", 1,2,3,4,5);
 
                 for (int j = 0; j < num_msg; j++) begin
-                    $display("fsdgdfgsdf");
+                    $display("%0d", msg_drvr_scrbrd[k].tiempo_envio);
                     //msg_chckr_scrbrd[j] = new();
 
                     chckr_2_scrbrd_mbx.get(msg_chckr_scrbrd[j]);
