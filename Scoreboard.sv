@@ -52,6 +52,10 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
                         t_total = t_total + msg_chckr_scrbrd.tiempo_recibido - msg_drvr_scrbrd.tiempo_envio;
                         //$fwrite(fcsv, "%d %d %d %d %d", msg_drvr_scrbrd[k].tiempo_envio, msg_drvr_scrbrd[k].id_emisor, msg_chckr_scrbrd[j].tiempo_recibido, msg_drvr_scrbrd[k].id_dest, t_total);
                     end
+
+                    else begin
+                        $display("else");
+                    end
                 end
 
 
