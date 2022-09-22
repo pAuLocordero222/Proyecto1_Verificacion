@@ -20,7 +20,7 @@ module tb;
   parameter pckg_size = 16;
   parameter drvrs = 4;
   parameter bits = 1;
-  parameter num_msg = 4;
+  parameter num_msg = 10;
 
   tipo_test test;
   reg clk;
@@ -52,7 +52,7 @@ module tb;
       
     //Test1: envio de datos aleatorios desde dispositivos aleatorios hacia destinos aleatorios 
     //Test2: se envian datos aleatorios a destinos aleatorios pero pasando por cada uno de los dispositivos hasta que todos hayan enviado un mensaje
-    test=test2;
+    test=test1;
     test_2_gen_mbx.put(test);
     #500000;$finish;
   end
