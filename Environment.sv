@@ -1,24 +1,24 @@
 class Envi #(parameter pckg_size, num_msg, drvrs, bits);
     //Se instancian los distintos modulos del ambiente
   
+  //se crea la instancia del agente, driver, monitor, checker y scoreboard
     age_gen #(.pckg_size(pckg_size), .num_msg(num_msg), .drvrs(drvrs)) inst_age_gen;
   	driver #(.pckg_size(pckg_size), .num_msg(num_msg), .drvrs(drvrs), .bits(bits)) inst_Driver;
   	monitor #(.pckg_size(pckg_size), .num_msg(num_msg), .drvrs(drvrs), .bits(bits)) inst_Monitor;
     checker #(.pckg_size(pckg_size), .num_msg(num_msg), .drvrs(drvrs), .bits(bits)) inst_checker;
     scoreborad #(.pckg_size(pckg_size), .num_msg(num_msg), .drvrs(drvrs), .bits(bits)) inst_scoreboard;
 
-  
+  //se declaran los mailboxes
 	  mailbox agnt_2_drvr_mbx;
     mailbox agnt_2_chckr_mbx;
     mailbox mntr_2_chckr_mbx;
     mailbox chckr_2_scrbrd_mbx;
     mailbox drvr_2_scrbrd_mbx;
 
-
+    //se declara una interface virtual
     virtual bus_if #(.bits(bits), .drvrs(drvrs), .pckg_size(pckg_size)) vif;
 
-    //Declaracion de los mailboxes
-    //mailbox test_2_gen_mbx;
+
     
 
     function new();
@@ -55,13 +55,10 @@ class Envi #(parameter pckg_size, num_msg, drvrs, bits);
       
     endfunction
     task run();
+      //se conectan las interfaces del driver y el monitor a la interface del DUT
       inst_Driver.vif=vif;
       inst_Monitor.vif=vif;
-    /*  
-      for (int i; i <= drvrs; i++) begin
-        inst_Driver.fifo[i].vif=vif;
-      end
-     */ 
+        //se crea un proceso hijo que corre los task run de los distintos elementos
         fork
             inst_age_gen.run();
           	inst_Driver.run();
@@ -70,7 +67,7 @@ class Envi #(parameter pckg_size, num_msg, drvrs, bits);
             #10000;
             inst_scoreboard.run();
 
-        join_none
+        join_none//se deja el proceso corriento y se continua
 
 
 
