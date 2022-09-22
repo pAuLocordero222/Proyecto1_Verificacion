@@ -43,7 +43,7 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
                 if(array_drvr[i].message==array_chckr[j].message)begin//Compara los mensajes de cada arreglo
 
                     //Escribe cada linea en el archivo .csv
-                    $fwrite(fcsv, "%0d, %0d, %0d, %0d, %0d \n", array_drvr[i].tiempo_envio,array_drvr[i].id_emisor,array_chckr[j].tiempo_recibido,array_chckr[j].message[15:8],array_chckr[j].tiempo_recibido-array_drvr[i].tiempo_envio);
+                    $fwrite(fcsv, "%0h, %0d, %0d, %0d, %0d, %0d \n", array_drvr[i].message, array_drvr[i].tiempo_envio,array_drvr[i].id_emisor,array_chckr[j].tiempo_recibido,array_chckr[j].message[15:8],array_chckr[j].tiempo_recibido-array_drvr[i].tiempo_envio);
                     t_total = t_total + array_chckr[j].tiempo_recibido-array_drvr[i].tiempo_envio;//Se calcula la suma de todos los retrasos
                 end
             end
