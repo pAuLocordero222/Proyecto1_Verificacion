@@ -8,6 +8,7 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
 
     int t_total = 0;
     int t_promedio = 0;
+    int fcsv;
 
     trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) msg_drvr_scrbrd[drvrs-1:0];
     trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) msg_chckr_scrbrd[drvrs-1:0];
