@@ -14,7 +14,7 @@
 
 
 module tb;
-  mailbox test_2_gen_mbx = new();
+  mailbox test_2_gen_mbx = new();//Se define mailbox que envia datos desde el testbench al agente
 
 
   parameter pckg_size = 16;
