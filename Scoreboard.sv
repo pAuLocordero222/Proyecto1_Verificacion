@@ -56,7 +56,7 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
         $display("Scoreboard");
         $display("El retardo promedio es: %0d ns:", t_promedio);//Se muestra el retraso promedio
 
-        $display("El ancho de banda es: %0d bits/s", bw;
+        $display("El ancho de banda es: %0d bits/s", bw);
 
 
 
