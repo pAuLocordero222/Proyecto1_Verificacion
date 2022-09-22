@@ -51,12 +51,12 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
         end
 
         t_promedio = t_total / num_msg;//Se calcula el retraso promedio
-        bw = (pckg_size*num_msg)*0.000001/(t_promedio*0.000000001);
-        $display("---------------------------");
+        bw = (pckg_size*num_msg)*0.000001/(t_promedio*0.000000001);//Se calcula el ancho de banda
+        $display("*-*-*-*-*-*-*-*-*-*-*-*");
         $display("Scoreboard");
         $display("El retardo promedio es: %0d ns:", t_promedio);//Se muestra el retraso promedio
 
-        $display("El ancho de banda es: %0d Mbits/s", bw);
+        $display("El ancho de banda es: %0d Mbits/s", bw);//Se muestra el ancho de banda
 
 
 
