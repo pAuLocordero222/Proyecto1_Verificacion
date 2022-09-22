@@ -12,6 +12,10 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
 
     trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) msg_drvr_scrbrd;//[drvrs-1:0];
     trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) msg_chckr_scrbrd;//[drvrs-1:0];
+    trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) array_drvr[num_msg-1:0];
+    trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) array_chckr[num_msg-1:0];
+
+
 
     task run();
         
@@ -22,13 +26,36 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
         $fwrite(fcsv,"T_envio,Disp_envio,T_recibido,Disp_recibido,Retraso \n");
         
 
-        $display("Retardo promedio");
 
         msg_drvr_scrbrd = new;
         msg_chckr_scrbrd = new;
 
+        for (int = 0; i < num_msg; i++) begin
+
+            fork
+                forever begin
+                    automatic j = i;
+                    array_chckr[i] = new();
+                    array_drvr[i] = new();
+
+                    drvr_2_scrbrd_mbx.get(array_drvr[i]);
+                    chckr_2_scrbrd_mbx.get(array_chckr[i]);
+
+                end
+
+            join_none
+        end
+
+        for (int i = 0; i < num_msg; i++) begin
+            for (int j = 0; j < num_msg; j++) begin
+                if(array_drvr[i].message==array_chckr[j].message)begin
+                    $fwrite(fcsv, "%0d, %0d, %0d, %0d, %0d \n", array_drvr[i].tiempo_envio,array_drvr[i].id_dest,array_chckr[j].tiempo_recibido,array_chckr[j].message[15:8],array_chckr[j].tiempo_recibido-array_drvr[i].tiempo_envio);
+                end
+            end
+        end
 
 
+/*
         for (int i = 0; i < num_msg; i++) begin
             //fork
                 automatic int k = i;
@@ -44,7 +71,7 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
                     //$display("%0h", msg_drvr_scrbrd[k].message);
                     //msg_chckr_scrbrd[j] = new();
 
-                    chckr_2_scrbrd_mbx.get(msg_chckr_scrbrd);
+                    chckr_2_scrbrd_mbx.peek(msg_chckr_scrbrd);
                     if (msg_drvr_scrbrd.message==msg_chckr_scrbrd.message) begin
                         drvr_2_scrbrd_mbx.get(msg_drvr_scrbrd);
                         chckr_2_scrbrd_mbx.get(msg_chckr_scrbrd);
@@ -59,15 +86,8 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
 
                 end
 
-/*
-                if (i == num_msg - 1) begin
-                    t_promedio = t_total / num_msg;
-                    $display("El retardo promedio para todos los paquetes es: %d", t_promedio);
-                end*/
 
-            //join_none
-
-        end
+        end*/
 /*
         forever begin
             if (drvr_2_scrbrd_mbx.num()!==0) begin
