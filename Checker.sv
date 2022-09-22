@@ -46,7 +46,7 @@ class checker #(parameter pckg_size, num_msg, drvrs, bits);
                     ob_scrbrd.tiempo_envio = msg_drvr_chckr.tiempo_envio;
                     ob_scrbrd.tiempo_recibido = msg_mntr_chckr.tiempo_recibido;
                     ob_scrbrd.id_emisor = msg_drvr_chckr.id_emisor;
-                    ob_scrbrd.id_dest = msg_drvr_scrbrd.id_dest;
+                    ob_scrbrd.id_dest = msg_agnt_scrbrd.id_dest;
                     ob_scrbrd.message = msg_agnt_chckr.message;
                     chckr_2_scrbrd_mbx.put(ob_scrbrd);
                 end
