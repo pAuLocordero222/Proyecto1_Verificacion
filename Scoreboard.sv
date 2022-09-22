@@ -10,8 +10,8 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
     int t_promedio = 0;
     int fcsv;
 
-    trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) msg_drvr_scrbrd[drvrs-1:0];
-    trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) msg_chckr_scrbrd[drvrs-1:0];
+    trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) msg_drvr_scrbrd[num_msg-1:0];
+    trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) msg_chckr_scrbrd[num_msg-1:0];
 
     task run();
         
@@ -24,7 +24,7 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
 
         $display("Retardo promedio");
 
-        for (int i = 0; i < drvrs; i++) begin
+        for (int i = 0; i < num_msg; i++) begin
             msg_drvr_scrbrd[i] = new();
             msg_chckr_scrbrd[i] = new();
         end
