@@ -30,7 +30,7 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
         msg_drvr_scrbrd = new;
         msg_chckr_scrbrd = new;
 
-        for (int = 0; i < num_msg; i++) begin
+        for (int i = 0; i < num_msg; i++) begin
 
             fork
                 forever begin
