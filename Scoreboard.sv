@@ -39,6 +39,8 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
 
         end
 
+        $display("Tamaño %0d", $size(array_chckr))
+
         //Ciclo para comparar los datos de ambos arreglos
         for (int i = 0; i < num_msg; i++) begin
             for (int j = 0; j < num_msg; j++) begin
