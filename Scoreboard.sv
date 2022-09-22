@@ -34,7 +34,7 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
 
             fork
                 forever begin
-                    automatic j = i;
+                    automatic int j = i;
                     array_chckr[i] = new();
                     array_drvr[i] = new();
 
