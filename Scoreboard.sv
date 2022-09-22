@@ -43,6 +43,7 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
 
                 for (int j = 0; j < num_msg; j++) begin
                     
+                    $display("*********");
                     //msg_chckr_scrbrd[j] = new();
 
                     chckr_2_scrbrd_mbx.get(msg_chckr_scrbrd[j]);
