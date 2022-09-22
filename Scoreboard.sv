@@ -19,7 +19,7 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
 
         fcsv = $fopen("./resultados.csv", "w");
 
-        $fwrite(fcsv,"T_envio,Disp_envio,T_recibido,Disp_recibido,Retraso");
+        $fwrite(fcsv,"T_envio,Disp_envio,T_recibido,Disp_recibido,Retraso \n");
         
 
         $display("Retardo promedio");
@@ -34,7 +34,7 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
                 drvr_2_scrbrd_mbx.get(msg_drvr_scrbrd[k]);
 
                 $display("fsdgdfgsdf");
-                $fwrite(fcsv, "%d %d %d %d %d", 1,2,3,4,5);
+                $fwrite(fcsv, "%d, %d, %d, %d, %d \n", 1,2,3,4,5);
 
                 for (int j = 0; j < num_msg; j++) begin
                     msg_chckr_scrbrd[j] = new();
