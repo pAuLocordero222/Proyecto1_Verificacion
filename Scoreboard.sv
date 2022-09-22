@@ -42,11 +42,12 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
                 $fwrite(fcsv, "%d, %d, %d, %d, %d \n", 1,2,3,4,5);
 
                 for (int j = 0; j < num_msg; j++) begin
-                    $display("%0d", msg_drvr_scrbrd[k].tiempo_envio);
+                    
                     //msg_chckr_scrbrd[j] = new();
 
                     chckr_2_scrbrd_mbx.get(msg_chckr_scrbrd[j]);
                     if (msg_drvr_scrbrd[k]==msg_chckr_scrbrd[j]) begin
+                        $display("%0d", msg_drvr_scrbrd[k].tiempo_envio);
                         t_total = t_total + msg_chckr_scrbrd[j].tiempo_recibido - msg_drvr_scrbrd[k].tiempo_envio;
                         //$fwrite(fcsv, "%d %d %d %d %d", msg_drvr_scrbrd[k].tiempo_envio, msg_drvr_scrbrd[k].id_emisor, msg_chckr_scrbrd[j].tiempo_recibido, msg_drvr_scrbrd[k].id_dest, t_total);
                     end
