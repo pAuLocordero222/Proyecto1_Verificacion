@@ -7,6 +7,7 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
 
     int t_total = 0;//Se guarda la suma de todos los retrasos
     int t_promedio = 0;//se guarda el promedio de todos los retrasos
+    int bw = 0;
     int fcsv;//Se usa lara el archivo .csv
 
 
@@ -50,11 +51,12 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
         end
 
         t_promedio = t_total / num_msg;//Se calcula el retraso promedio
+        bw = (pckg_size*num_msg)/t_promedio;
         $display("---------------------------");
         $display("Scoreboard");
         $display("El retardo promedio es: %0d ns:", t_promedio);//Se muestra el retraso promedio
 
-        $display("El ancho de banda es: %0d bits/s", (pckg_size*num_msg)/t_promedio);
+        $display("El ancho de banda es: %0d bits/s", bw;
 
 
 
