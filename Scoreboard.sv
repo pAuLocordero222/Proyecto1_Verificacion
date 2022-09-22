@@ -45,6 +45,8 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
         end
 
         t_promedio = t_total / num_msg;
+        $display("---------------------------");
+        $display("Scoreboard");
         $display("El retardo promedio es %0d ns:", t_promedio);
 
 
