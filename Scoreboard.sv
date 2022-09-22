@@ -37,7 +37,7 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
                 drvr_2_scrbrd_mbx.peek(msg_drvr_scrbrd);
 
                 
-                $fwrite(fcsv, "%d, %d, %d, %d, %d \n", 1,2,3,4,5);
+                
 
                 for (int j = 0; j < num_msg; j++) begin
                     
@@ -55,6 +55,7 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
 
                     $display("Mensaje %0h",msg_chckr_scrbrd.message);
                     $display("Tiempo %0d", msg_chckr_scrbrd.tiempo_recibido);
+                    $fwrite(fcsv, "%d, %d, %d, %d, %d \n", 1,2,msg_chckr_scrbrd.message[15:8],msg_chckr_scrbrd.tiempo_recibido,5);
 
                 end
 
