@@ -35,11 +35,11 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
             fork
                 forever begin
                     automatic int j = i;
-                    array_chckr[i] = new();
-                    array_drvr[i] = new();
+                    array_chckr[j] = new();
+                    array_drvr[j] = new();
 
-                    drvr_2_scrbrd_mbx.get(array_drvr[i]);
-                    chckr_2_scrbrd_mbx.get(array_chckr[i]);
+                    drvr_2_scrbrd_mbx.get(array_drvr[j]);
+                    chckr_2_scrbrd_mbx.get(array_chckr[j]);
 
                 end
 
