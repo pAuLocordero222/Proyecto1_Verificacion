@@ -46,10 +46,10 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
 
                     chckr_2_scrbrd_mbx.peek(msg_chckr_scrbrd);
                     if (msg_drvr_scrbrd.message==msg_chckr_scrbrd.message) begin
-                        drvr_2_scrbrd_mbx.get(msg_drvr_scrbrd[k]);
-                        chckr_2_scrbrd_mbx.get(msg_chckr_scrbrd[j]);
-                        $display("%0d", msg_drvr_scrbrd[k].tiempo_envio);
-                        t_total = t_total + msg_chckr_scrbrd[j].tiempo_recibido - msg_drvr_scrbrd[k].tiempo_envio;
+                        drvr_2_scrbrd_mbx.get(msg_drvr_scrbrd);
+                        chckr_2_scrbrd_mbx.get(msg_chckr_scrbrd);
+                        $display("%0d", msg_drvr_scrbrd.tiempo_envio);
+                        t_total = t_total + msg_chckr_scrbrd.tiempo_recibido - msg_drvr_scrbrd.tiempo_envio;
                         //$fwrite(fcsv, "%d %d %d %d %d", msg_drvr_scrbrd[k].tiempo_envio, msg_drvr_scrbrd[k].id_emisor, msg_chckr_scrbrd[j].tiempo_recibido, msg_drvr_scrbrd[k].id_dest, t_total);
                     end
                 end
