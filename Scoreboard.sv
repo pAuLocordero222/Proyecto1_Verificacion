@@ -34,6 +34,8 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
 
             drvr_2_scrbrd_mbx.get(array_drvr[i]);//Se guardan los datos provenientes del mailbox en el arreglo
             chckr_2_scrbrd_mbx.get(array_chckr[i]);//Se guardan los datos provenientes del mailbox en el arreglo
+            $display("DRVR: %0h", array_drvr[i].message);
+            $display("CHCKR: %0h", array_chckr[i].message);
 
         end
 
