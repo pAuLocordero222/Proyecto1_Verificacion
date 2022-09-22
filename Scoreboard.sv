@@ -15,6 +15,10 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
     task run();
         
         $display("[%g] El scoreboard fue inicializado.", $time);
+
+        fcsv = $fopen("./resultados.csv", "w");
+
+        $fwrite(fcsv,"T_envio,Disp_envio,T_recibido,Disp_recibido,Retraso");
         
 
         $display("Retardo promedio");
