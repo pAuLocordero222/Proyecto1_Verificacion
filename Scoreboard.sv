@@ -32,18 +32,12 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
 
         for (int i = 0; i < num_msg; i++) begin
 
-            fork
-                forever begin
-                    automatic int j = i;
-                    array_chckr[j] = new();
-                    array_drvr[j] = new();
+            array_chckr[i] = new();
+            array_drvr[i] = new();
 
-                    drvr_2_scrbrd_mbx.get(array_drvr[j]);
-                    chckr_2_scrbrd_mbx.get(array_chckr[j]);
+            drvr_2_scrbrd_mbx.get(array_drvr[i]);
+            chckr_2_scrbrd_mbx.get(array_chckr[i]);
 
-                end
-
-            join_none
         end
 
         for (int i = 0; i < num_msg; i++) begin
