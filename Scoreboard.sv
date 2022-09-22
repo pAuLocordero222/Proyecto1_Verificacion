@@ -43,7 +43,7 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
         for (int i = 0; i < num_msg; i++) begin
             for (int j = 0; j < num_msg; j++) begin
                 if(array_drvr[i].message==array_chckr[j].message)begin
-                    $fwrite(fcsv, "%0d, %0d, %0d, %0d, %0d \n", array_drvr[i].tiempo_envio,array_drvr[i].id_dest,array_chckr[j].tiempo_recibido,array_chckr[j].message[15:8],array_chckr[j].tiempo_recibido-array_drvr[i].tiempo_envio);
+                    $fwrite(fcsv, "%0d, %0d, %0d, %0d, %0d \n", array_drvr[i].tiempo_envio,array_drvr[i].id_emisor,array_chckr[j].tiempo_recibido,array_chckr[j].message[15:8],array_chckr[j].tiempo_recibido-array_drvr[i].tiempo_envio);
                 end
             end
         end
