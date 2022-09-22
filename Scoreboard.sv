@@ -44,7 +44,7 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
                     //$display("%0h", msg_drvr_scrbrd[k].message);
                     //msg_chckr_scrbrd[j] = new();
 
-                    chckr_2_scrbrd_mbx.peek(msg_chckr_scrbrd);
+                    chckr_2_scrbrd_mbx.get(msg_chckr_scrbrd);
                     if (msg_drvr_scrbrd.message==msg_chckr_scrbrd.message) begin
                         drvr_2_scrbrd_mbx.get(msg_drvr_scrbrd);
                         chckr_2_scrbrd_mbx.get(msg_chckr_scrbrd);
@@ -54,8 +54,10 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
                     end
 
                     else begin
-                        $display("else");
+                        $display("Mensaje %0h",msg_chckr_scrbrd.message);
+                        $display("Tiempo %0d", msg_chckr_scrbrd.tiempo_recibido);
                     end
+
                 end
 
 
