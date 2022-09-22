@@ -42,11 +42,12 @@ class age_gen #(parameter pckg_size, num_msg, drvrs);
                                             
             test2:
                 begin
-                    for (int i = 0; i < drvrs; i++) begin
+                    int cont = 0;
+                    for (int i = 0; i < num_msg; i++) begin
                         trans_bus #(.pckg_size(pckg_size), .drvrs(drvrs)) msg_2_drvr;
                         msg_2_drvr = new;
                         msg_2_drvr.randomize();
-                        msg_2_drvr.id_emisor=i;
+                        msg_2_drvr.id_emisor=cont;
 
                         msg_2_drvr.message={msg_2_drvr.id_dest, msg_2_drvr.payload};
                         agnt_2_drvr_mbx.put(msg_2_drvr);
@@ -58,6 +59,10 @@ class age_gen #(parameter pckg_size, num_msg, drvrs);
                       	$display("emisor=%d",msg_2_drvr.id_emisor);
                         $display("destino=",msg_2_drvr.id_dest);
                       	$display("");
+                        cont = cont + 1;
+                        if(cont == drvrs) begin
+                            cont = 0;
+                        end
                     end
                 end
 

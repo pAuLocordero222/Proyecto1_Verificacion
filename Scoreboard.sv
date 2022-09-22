@@ -58,11 +58,11 @@ class scoreborad #(parameter pckg_size, num_msg, drvrs, bits);
 
                 end
 
-
+/*
                 if (i == num_msg - 1) begin
                     t_promedio = t_total / num_msg;
                     $display("El retardo promedio para todos los paquetes es: %d", t_promedio);
-                end
+                end*/
 
             //join_none
 
